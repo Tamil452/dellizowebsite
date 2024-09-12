@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verify OTP</title>
+    <!-- Tailwind CSS CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@^2.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-50 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full text-center">
+      <!-- Icon -->
+      <div class="flex justify-center mb-6">
+        <img
+          src="https://img.freepik.com/premium-vector/vector-illustration-about-data-protection-concept-with-active-lock-security_675567-5772.jpg?w=740"
+          alt="OTP Icon"
+          class="w-16 h-16"
+        />
+      </div>
+
+      <!-- Heading -->
+      <h2 class="text-xl font-semibold text-gray-700 mb-2">Verify Account</h2>
+
+      <!-- Description -->
+      <p class="text-gray-600 mb-4">
+        Mobile verification has successfully been done. We have sent the OTP to
+        8882356364.
+      </p>
+
+      <!-- OTP Input -->
+      <form method="post" class="space-y-4">
+        {% csrf_token %}
+        <div class="flex justify-center space-x-2">
+          <input
+            type="text"
+            id="otp1"
+            name="otp1"
+            maxlength="1"
+            class="w-10 h-10 text-center border-b-2 border-gray-300 focus:outline-none focus:border-red-500"
+            required
+          />
+          <input
+            type="text"
+            id="otp2"
+            name="otp2"
+            maxlength="1"
+            class="w-10 h-10 text-center border-b-2 border-gray-300 focus:outline-none focus:border-red-500"
+            required
+          />
+          <input
+            type="text"
+            id="otp3"
+            name="otp3"
+            maxlength="1"
+            class="w-10 h-10 text-center border-b-2 border-gray-300 focus:outline-none focus:border-red-500"
+            required
+          />
+          <input
+            type="text"
+            id="otp4"
+            name="otp4"
+            maxlength="1"
+            class="w-10 h-10 text-center border-b-2 border-gray-300 focus:outline-none focus:border-red-500"
+            required
+          />
+          <input
+            type="text"
+            id="otp5"
+            name="otp5"
+            maxlength="1"
+            class="w-10 h-10 text-center border-b-2 border-gray-300 focus:outline-none focus:border-red-500"
+            required
+          />
+          <input
+            type="text"
+            id="otp6"
+            name="otp6"
+            maxlength="1"
+            class="w-10 h-10 text-center border-b-2 border-gray-300 focus:outline-none focus:border-red-500"
+            required
+          />
+        </div>
+
+        <!-- Submit Button -->
+        <a
+          href="/create_account.html"
+          type="submit"
+          class="w-full bg-purple-600 text-white rounded-lg py-2 font-semibold shadow-sm hover:bg-purple-700 transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-purple-500"
+        >
+          Verify
+        </a>
+      </form>
+    </div>
+  </body>
+</html>

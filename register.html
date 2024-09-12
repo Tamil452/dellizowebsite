@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Registration</title>
+    <!-- Tailwind CSS CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@^2.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-purple-50 flex items-center justify-center min-h-screen">
+    <div
+      class="flex flex-col md:flex-row bg-white shadow-lg rounded-lg overflow-hidden max-w-6xl"
+    >
+      <!-- Left Section (Form) -->
+      <div class="lg:w-1/2 p-8">
+        <!-- Logo and Heading -->
+        <div class="mb-8">
+          <img src="" alt="Logo" class="w-12 h-12 mb-4" />
+          <h2 class="text-3xl font-bold text-purple-600">Register</h2>
+          <p class="text-gray-600">Create an account to get started.</p>
+        </div>
+
+        <!-- Registration Form -->
+        <form method="post" class="space-y-6">
+          <!-- {% csrf_token %} -->
+          <div>
+            <label
+              for="id_email"
+              class="block text-sm font-medium text-gray-700"
+              >Email:</label
+            >
+            <input
+              type="email"
+              id="id_email"
+              name="email"
+              required
+              class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+              placeholder="Enter your email"
+            />
+          </div>
+
+          <a
+            href="/verify_otp.html"
+            type="submit"
+            class="w-full bg-purple-600 text-white rounded-lg py-3 font-semibold shadow-sm hover:bg-purple-700 transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-purple-500 text-center block"
+          >
+            Send OTP
+          </a>
+        </form>
+
+        <!-- {% if messages %} {% for message in messages %}
+        <p>{{ message }}</p>
+        {% endfor %} {% endif %} -->
+      </div>
+
+      <!-- Right Section (Image or Illustration) -->
+      <div
+        class="hidden lg:flex lg:w-1/2 bg-purple-100 justify-center items-center"
+      >
+        <img
+          src="https://img.freepik.com/free-vector/sign-up-concept-illustration_114360-7885.jpg?t=st=1723540102~exp=1723543702~hmac=c5270fbb154468a72c4809bc571c28c3df00a172afe1ddf6dcbe7b0ec7f713f3&w=740"
+          alt="Illustration"
+          class="w-full h-full"
+        />
+      </div>
+    </div>
+  </body>
+</html>

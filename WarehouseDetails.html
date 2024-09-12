@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Property Details</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      html {
+        scroll-behavior: smooth;
+        transition: 150ms;
+      }
+
+      .item-card,
+      .permitted-card,
+      .prohibited-card {
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+      }
+      .item-card:hover,
+      .permitted-card:hover,
+      .prohibited-card:hover {
+        background-color: #4cd135; /* Default color on hover */
+        color: white;
+        box-shadow: none; /* Remove shadow on hover */
+      }
+      .item-card:hover {
+        background-color: #184fbd;
+      }
+      .permitted-card:hover {
+        background-color: #4cd135;
+      }
+      .prohibited-card:hover {
+        background-color: #bd1826;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100">
+    <nav class="bg-blue-100 border-gray-200">
+      <div
+        class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
+      >
+        <!-- Left Logo Section -->
+        <a href="#" class="flex items-center">
+          <img
+            src="https://flowbite.com/docs/images/logo.svg"
+            class="h-8"
+            alt="Flowbite Logo"
+          />
+          <span
+            class="self-center text-2xl font-semibold px-3 whitespace-nowrap"
+            >Dellizo</span
+          >
+        </a>
+
+        <!-- Center Navigation Links -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="Landing.html" class="text-gray-700 hover:text-blue-500">Home</a>
+          <a href="addWarehouse.html" class="text-gray-700 hover:text-blue-500">Warehouses</a>
+          <a href="overview.html" class="text-gray-700 hover:text-blue-500">Bookings</a>
+          <a href="Landing.html" class="text-gray-700 hover:text-blue-500">Contact</a>
+        </div>
+
+        <!-- Right Profile Section -->
+        <div class="flex items-center md:order-2 space-x-4">
+          <!-- Profile picture with dropdown -->
+          <div class="relative">
+            <button
+              type="button"
+              class="flex items-center space-x-3 rounded-full focus:outline-none"
+              id="profile-menu-button"
+              aria-expanded="false"
+              data-dropdown-toggle="profile-dropdown"
+            >
+              <img
+                src="https://i.pravatar.cc/40"
+                class="w-10 h-10 rounded-full"
+                alt="Profile"
+              />
+              <span class="text-gray-900">John Doe</span>
+            </button>
+
+            <!-- Dropdown menu -->
+            <div
+              id="profile-dropdown"
+              class="z-10 hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg"
+            >
+              <ul class="py-2 text-sm text-gray-700">
+                <li>
+                  <a href="overview.html" class="block px-4 py-2 hover:bg-gray-100"
+                    >Dashboard</a
+                  >
+                </li>
+                <li>
+                  <a href="inbox.html" class="block px-4 py-2 hover:bg-gray-100"
+                    >My Inbox</a
+                  >
+                </li>
+                <li>
+                  <a href="dashboard.html" class="block px-4 py-2 hover:bg-gray-100"
+                    >Profile</a
+                  >
+                </li>
+                <li><hr class="border-t border-gray-200" /></li>
+                <li>
+                  <a
+                    href="login.html"
+                    class="block px-4 py-2 text-red-600 hover:bg-gray-100"
+                    >Logout</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Property Details Section -->
+    <div class="flex flex-col lg:flex-row justify-around">
+      <div class="p-6 w-full lg:w-1/2 flex flex-col items-center">
+        <!-- Title and Location -->
+        <h1 class="text-2xl md:text-3xl text-center lg:text-start font-bold">
+          RR Warehouse - A Storage Place
+        </h1>
+        <!-- <p class="text-gray-600 my-3 text-center md:text-left">
+          Log Huts Area, Manali, Himachal Pradesh, 175131
+        </p> -->
+      </div>
+
+      <div class="flex flex-row justify-around border w-full lg:w-1/2 p-5">
+        <div
+          class="flex items-center justify-center p-1 md:p-4 rounded-lg bg-gray-100 lg:mb-4 md:mb-0 w-full lg:w-[45%]"
+        >
+          <div
+            class="text-lg md:text-2xl text-gray-900 mr-3 border-2 border-gray-300 rounded-full py-2 md:py-3 px-4 md:px-5"
+          >
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div class="text-left">
+            <h3 class="text-sm md:text-lg font-bold m-0">Himachal</h3>
+            <p class="text-xs md:text-sm text-gray-600 m-0">Manali</p>
+          </div>
+        </div>
+        <div
+          class="flex items-center justify-center p-1 md:p-4 rounded-lg bg-gray-100 w-full lg:w-[45%]"
+        >
+          <div
+            class="text-lg md:text-2xl text-gray-900 mr-3 border-2 border-gray-300 rounded-full py-1 md:py-3 px-2 md:px-3"
+          >
+            <i class="fa-solid fa-warehouse"></i>
+          </div>
+          <div class="text-left">
+            <h3 class="text-sm md:text-lg font-bold m-0">Capacity</h3>
+            <p class="text-xs md:text-sm text-gray-600 m-0">1234 sqft.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Image Gallery Section -->
+    <div class="p-6 flex flex-col md:flex-row border">
+      <div class="border w-full xl:w-3/5 rounded-md m-2">
+        <!-- Carousel -->
+        <div class="relative overflow-hidden">
+          <div class="flex transition-transform duration-500" id="carousel">
+            <!-- Images displayed on all screen sizes -->
+            <div class="carousel-item flex-none w-full h-[300px] md:h-[465px]">
+              <img
+                src="./images/img4.jpeg"
+                class="w-full h-full object-cover"
+                alt="Warehouse Interior 1"
+              />
+            </div>
+            <div class="carousel-item flex-none w-full h-[300px] md:h-[465px]">
+              <img
+                src="./images/img5.jpeg"
+                class="w-full h-full object-cover"
+                alt="Warehouse Interior 2"
+              />
+            </div>
+            <div class="carousel-item flex-none w-full h-[300px] md:h-[465px]">
+              <img
+                src="./images/img6.jpeg"
+                class="w-full h-full object-cover"
+                alt="Warehouse Exterior"
+              />
+            </div>
+
+            <!-- Images hidden on xl and larger screens -->
+            <div
+              class="sm:block xl:hidden carousel-item flex-none w-full h-[300px] md:h-[465px]"
+            >
+              <img
+                src="./images/img4.jpeg"
+                class="w-full h-full object-cover"
+                alt="Warehouse Exterior"
+              />
+            </div>
+            <div
+              class="sm:block xl:hidden carousel-item flex-none w-full h-[300px] md:h-[465px]"
+            >
+              <img
+                src="./images/img1.jpeg"
+                class="w-full h-full object-cover"
+                alt="Warehouse Exterior"
+              />
+            </div>
+            <div
+              class="sm:block xl:hidden carousel-item flex-none w-full h-[300px] md:h-[465px]"
+            >
+              <img
+                src="./images/img2.jpeg"
+                class="w-full h-full object-cover"
+                alt="Warehouse Exterior"
+              />
+            </div>
+            <div
+              class="sm:block xl:hidden carousel-item flex-none w-full h-[300px] md:h-[465px]"
+            >
+              <img
+                src="./images/img3.jpeg"
+                class="w-full h-full object-cover"
+                alt="Warehouse Exterior"
+              />
+            </div>
+            <div
+              class="sm:block xl:hidden carousel-item flex-none w-full h-[300px] md:h-[465px]"
+            >
+              <img
+                src="./images/img5.jpeg"
+                class="w-full h-full object-cover"
+                alt="Warehouse Exterior"
+              />
+            </div>
+          </div>
+
+          <!-- Carousel navigation buttons -->
+          <button
+            class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white p-2"
+            onclick="prevSlide()"
+          >
+            ❮
+          </button>
+          <button
+            class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white p-2"
+            onclick="nextSlide()"
+          >
+            ❯
+          </button>
+        </div>
+      </div>
+      <div class="hidden xl:block w-full md:w-2/5">
+        <div class="border rounded-md m-2">
+          <img
+            src="./images/img1.jpeg"
+            class="h-[200px] md:h-[300px] w-full object-cover"
+            alt="Warehouse Exterior View"
+          />
+        </div>
+        <div class="flex flex-col md:flex-row">
+          <div class="w-full md:w-1/2 border rounded-md m-2">
+            <img
+              src="./images/img2.jpeg"
+              class="h-[150px] w-full object-cover"
+              alt="Warehouse Loading Area"
+            />
+          </div>
+          <div class="w-full md:w-1/2 border rounded-md m-2">
+            <img
+              src="./images/img3.jpeg"
+              class="h-[150px] w-full object-cover"
+              alt="Warehouse Storage Area"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div
+      class="hidden md:block flex items-center justify-center p-4 bg-gray-100 border-b-2 border-blue-200 shadow"
+    >
+      <ul
+        class="flex flex-col md:flex-row justify-center space-y-2 md:space-y-0 md:space-x-10"
+      >
+        <li><a href="#overview" class="hover:underline">Overview</a></li>
+        <li><a href="#amenities" class="hover:underline">Amenities</a></li>
+        <li><a href="#prohibited" class="hover:underline">Prohibited</a></li>
+        <li><a href="#permitted" class="hover:underline">Permitted</a></li>
+        <li><a href="#policies" class="hover:underline">Policies</a></li>
+        <li><a href="#location" class="hover:underline">Location</a></li>
+      </ul>
+    </div>
+
+    <div class="flex flex-col xl:flex-row">
+      <div class="w-full xl:w-3/5 px-4 md:px-10 lg:px-16">
+        <!-- Overview and Booking Section -->
+        <div class="flex flex-col" id="overview">
+          <!-- Overview Text -->
+          <div class="pt-5 md:pt-14">
+            <h2 class="text-lg md:text-2xl font-bold m-0">- Description</h2>
+            <p class="text-gray-700 mt-4">
+              This premium warehouse in Manali's Log Huts Area offers secure and
+              accessible storage with 24/7 surveillance and climate control.
+              Ideal for various storage needs, it features smooth flooring and
+              high ceilings for efficient stacking. Located near major
+              transportation routes, it's perfect for businesses seeking
+              reliable, flexible storage solutions.
+            </p>
+          </div>
+
+          <!-- Amenities Section -->
+          <div class="mt-2 md:mt-6 py-6 border" id="amenities">
+            <h2 class="text-lg md:text-2xl font-bold my-4">- Amenities</h2>
+            <div class="flex flex-wrap justify-start gap-2">
+              <span
+                class="item-card w-[calc(50%-0.5rem)] sm:w-[calc(33.33%-0.66rem)] md:w-[calc(25%-0.75rem)] lg:w-[calc(30%-0.8rem)] bg-white shadow-sm p-4 rounded-lg border border-gray-200 hover:shadow-md transition-all"
+              >
+                <i class="fas fa-flask text-lg mr-2"></i>
+                <p>Chemicals</p>
+              </span>
+              <span
+                class="item-card w-[calc(50%-0.5rem)] sm:w-[calc(33.33%-0.66rem)] md:w-[calc(25%-0.75rem)] lg:w-[calc(30%-0.8rem)] bg-white shadow-sm p-4 rounded-lg border border-gray-200 hover:shadow-md transition-all"
+              >
+                <i class="fas fa-fire text-lg mr-2"></i>
+                <p>Explosives</p>
+              </span>
+              <span
+                class="item-card w-[calc(50%-0.5rem)] sm:w-[calc(33.33%-0.66rem)] md:w-[calc(25%-0.75rem)] lg:w-[calc(30%-0.8rem)] bg-white shadow-sm p-4 rounded-lg border border-gray-200 hover:shadow-md transition-all"
+              >
+                <i class="fas fa-dumpster text-lg mr-2"></i>
+                <p>Waste</p>
+              </span>
+              <span
+                class="item-card w-[calc(50%-0.5rem)] sm:w-[calc(33.33%-0.66rem)] md:w-[calc(25%-0.75rem)] lg:w-[calc(30%-0.8rem)] bg-white shadow-sm p-4 rounded-lg border border-gray-200 hover:shadow-md transition-all"
+              >
+                <i class="fas fa-glass-cheers text-lg mr-2"></i>
+                <p>Alcohol</p>
+              </span>
+              <span
+                class="item-card w-[calc(50%-0.5rem)] sm:w-[calc(33.33%-0.66rem)] md:w-[calc(25%-0.75rem)] lg:w-[calc(30%-0.8rem)] bg-white shadow-sm p-4 rounded-lg border border-gray-200 hover:shadow-md transition-all"
+              >
+                <i class="fas fa-apple-alt text-lg mr-2"></i>
+                <p>Food</p>
+              </span>
+              <span
+                class="item-card w-[calc(50%-0.5rem)] sm:w-[calc(33.33%-0.66rem)] md:w-[calc(25%-0.75rem)] lg:w-[calc(30%-0.8rem)] bg-white shadow-sm p-4 rounded-lg border border-gray-200 hover:shadow-md transition-all"
+              >
+                <i class="fas fa-box text-lg mr-2"></i>
+                <p>General Goods</p>
+              </span>
+              <span
+                class="item-card w-[calc(50%-0.5rem)] sm:w-[calc(33.33%-0.66rem)] md:w-[calc(25%-0.75rem)] lg:w-[calc(30%-0.8rem)] bg-white shadow-sm p-4 rounded-lg border border-gray-200 hover:shadow-md transition-all"
+              >
+                <i class="fas fa-cogs text-lg mr-2"></i>
+                <p>Electronics</p>
+              </span>
+              <span
+                class="item-card w-[calc(50%-0.5rem)] sm:w-[calc(33.33%-0.66rem)] md:w-[calc(25%-0.75rem)] lg:w-[calc(30%-0.8rem)] bg-white shadow-sm p-4 rounded-lg border border-gray-200 hover:shadow-md transition-all"
+              >
+                <i class="fas fa-clothing text-lg mr-2"></i>
+                <p>Clothing</p>
+              </span>
+              <span
+                class="item-card w-[calc(50%-0.5rem)] sm:w-[calc(33.33%-0.66rem)] md:w-[calc(25%-0.75rem)] lg:w-[calc(30%-0.8rem)] bg-white shadow-sm p-4 rounded-lg border border-gray-200 hover:shadow-md transition-all"
+              >
+                <i class="fas fa-hammer text-lg mr-2"></i>
+                <p>Tools</p>
+              </span>
+            </div>
+          </div>
+
+          <!-- Prohibited & Permitted Items Section -->
+          <div class="mt-2 md:mt-6 py-6 border" id="prohibited-items">
+            <h2 class="text-lg md:text-2xl font-bold my-4">
+              - Prohibited Items
+            </h2>
+            <div class="flex flex-wrap justify-start gap-2">
+              <span
+                class="prohibited-card w-[calc(50%-0.5rem)] sm:w-[calc(33.33%-0.66rem)] md:w-[calc(25%-0.75rem)] lg:w-[calc(30%-0.8rem)] bg-white shadow-sm p-4 rounded-lg border border-gray-200 hover:shadow-md transition-all"
+              >
+                <i class="fas fa-biohazard text-lg mr-2"></i>
+                <p>Hazardous Materials</p>
+              </span>
+              <span
+                class="prohibited-card w-[calc(50%-0.5rem)] sm:w-[calc(33.33%-0.66rem)] md:w-[calc(25%-0.75rem)] lg:w-[calc(30%-0.8rem)] bg-white shadow-sm p-4 rounded-lg border border-gray-200 hover:shadow-md transition-all"
+              >
+                <i class="fas fa-gas-pump text-lg mr-2"></i>
+                <p>Flammable Liquids</p>
+              </span>
+              <span
+                class="prohibited-card w-[calc(50%-0.5rem)] sm:w-[calc(33.33%-0.66rem)] md:w-[calc(25%-0.75rem)] lg:w-[calc(30%-0.8rem)] bg-white shadow-sm p-4 rounded-lg border border-gray-200 hover:shadow-md transition-all"
+              >
+                <i class="fas fa-radiation text-lg mr-2"></i>
+                <p>Radioactive Materials</p>
+              </span>
+              <span
+                class="prohibited-card w-[calc(50%-0.5rem)] sm:w-[calc(33.33%-0.66rem)] md:w-[calc(25%-0.75rem)] lg:w-[calc(30%-0.8rem)] bg-white shadow-sm p-4 rounded-lg border border-gray-200 hover:shadow-md transition-all"
+              >
+                <i class="fas fa-syringe text-lg mr-2"></i>
+                <p>Medical Waste</p>
+              </span>
+              <span
+                class="prohibited-card w-[calc(50%-0.5rem)] sm:w-[calc(33.33%-0.66rem)] md:w-[calc(25%-0.75rem)] lg:w-[calc(30%-0.8rem)] bg-white shadow-sm p-4 rounded-lg border border-gray-200 hover:shadow-md transition-all"
+              >
+                <i class="fas fa-bomb text-lg mr-2"></i>
+                <p>Explosives</p>
+              </span>
+              <span
+                class="permitted-card w-[calc(50%-0.5rem)] sm:w-[calc(33.33%-0.66rem)] md:w-[calc(25%-0.75rem)] lg:w-[calc(30%-0.8rem)] bg-white shadow-sm p-4 rounded-lg border border-gray-200 hover:shadow-md transition-all"
+              >
+                <i class="fas fa-box text-lg mr-2"></i>
+                <p>Household Goods</p>
+              </span>
+              <span
+                class="permitted-card w-[calc(50%-0.5rem)] sm:w-[calc(33.33%-0.66rem)] md:w-[calc(25%-0.75rem)] lg:w-[calc(30%-0.8rem)] bg-white shadow-sm p-4 rounded-lg border border-gray-200 hover:shadow-md transition-all"
+              >
+                <i class="fas fa-tshirt text-lg mr-2"></i>
+                <p>Apparel</p>
+              </span>
+              <span
+                class="permitted-card w-[calc(50%-0.5rem)] sm:w-[calc(33.33%-0.66rem)] md:w-[calc(25%-0.75rem)] lg:w-[calc(30%-0.8rem)] bg-white shadow-sm p-4 rounded-lg border border-gray-200 hover:shadow-md transition-all"
+              >
+                <i class="fas fa-laptop text-lg mr-2"></i>
+                <p>Electronics</p>
+              </span>
+              <span
+                class="permitted-card w-[calc(50%-0.5rem)] sm:w-[calc(33.33%-0.66rem)] md:w-[calc(25%-0.75rem)] lg:w-[calc(30%-0.8rem)] bg-white shadow-sm p-4 rounded-lg border border-gray-200 hover:shadow-md transition-all"
+              >
+                <i class="fas fa-book text-lg mr-2"></i>
+                <p>Books</p>
+              </span>
+              <span
+                class="permitted-card w-[calc(50%-0.5rem)] sm:w-[calc(33.33%-0.66rem)] md:w-[calc(25%-0.75rem)] lg:w-[calc(30%-0.8rem)] bg-white shadow-sm p-4 rounded-lg border border-gray-200 hover:shadow-md transition-all"
+              >
+                <i class="fas fa-toolbox text-lg mr-2"></i>
+                <p>Machinery Parts</p>
+              </span>
+            </div>
+          </div>
+
+          <!-- Policies Section -->
+          <div class="mt-3 md:mt-6 py-3 md:py-6 border" id="policies">
+            <h2 class="text-lg md:text-2xl font-bold my-4">- Policies</h2>
+            <p class="text-gray-700">
+              Our warehouse policies are designed to ensure the safety and
+              efficiency of our services. We require compliance with safety
+              regulations and guidelines for all stored goods.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Booking Section -->
+      <div class="w-full xl:w-2/5 px-4 md:px-16 border">
+        <h2 class="text-2xl text-blue-500 text-center font-bold my-4">
+          Booking
+        </h2>
+        <div class="px-10 py-3 bg-white rounded-lg">
+          <p class="text-2xl font-bold text-gray-800">₹4,56,000/month</p>
+          <form class="mt-6">
+            <label class="block text-sm font-medium text-gray-700"
+              >Check-in</label
+            >
+            <input
+              type="date"
+              class="mt-1 p-2 border rounded w-full text-gray-900"
+            />
+
+            <label class="block text-sm font-medium text-gray-700 mt-4"
+              >Check-out</label
+            >
+            <input
+              type="date"
+              class="mt-1 p-2 border rounded w-full text-gray-900"
+            />
+
+            <button
+              type="submit"
+              class="mt-6 bg-blue-600 text-white font-bold py-2 px-4 rounded w-full hover:bg-blue-700"
+            >
+              Book Now
+            </button>
+          </form>
+        </div>
+
+        <!-- Policies Section -->
+        <div class="my-8 py-2" id="policies">
+          <h2 class="text-2xl font-bold my-4">- Policies</h2>
+          <div class="flex flex-wrap justify-start gap-2">
+            <div class="border p-4 rounded-lg bg-white shadow-sm w-full">
+              <h3 class="text-lg font-bold">1. Cancellation Policy</h3>
+              <p class="text-gray-700 mt-2">
+                Full refund for cancellations made within 48 hours of booking.
+                50% refund for cancellations made up to 7 days before the
+                booking date.
+              </p>
+            </div>
+            <div class="border p-4 rounded-lg bg-white shadow-sm w-full">
+              <h3 class="text-lg font-bold">2. Access Policy</h3>
+              <p class="text-gray-700 mt-2">
+                Access to the warehouse is available 24/7 through a secure
+                access code. Please ensure the access code is not shared
+                publicly.
+              </p>
+            </div>
+            <div class="border p-4 rounded-lg bg-white shadow-sm w-full">
+              <h3 class="text-lg font-bold">2. Security Policy</h3>
+              <p class="text-gray-700 mt-2">
+                The premises are monitored by CCTV 24/7. Any suspicious activity
+                will be reported to the authorities.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Location Section -->
+    <div class="px-6 lg:px-16 mt-3 md:mt-6 py-3" id="location">
+      <h2 class="text-lg md:text-2xl font-bold my-4">- Location</h2>
+      <p class="text-gray-700 mt-4">
+        The warehouse is conveniently located in the Log Huts Area of Manali,
+        Himachal Pradesh, known for its accessibility and secure environment.
+      </p>
+      <div class="mt-4">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d208730.99419397135!2d77.1097058325286!3d32.24318779794219!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390431e5c5a9b9b1%3A0xa4f621bf64029c4!2sManali%2C%20Himachal%20Pradesh%2C%20India!5e0!3m2!1sen!2sus!4v1692906259238!5m2!1sen!2sus"
+          width="100%"
+          height="450"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+        <!-- Footer -->
+        <footer class="bg-blue-100 text-black py-6 mt-10">
+          <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <!-- Column 1: Dellizo Warehouse Info -->
+              <div class="text-center px-10 md:text-left">
+                <h4 class="text-lg font-bold mb-4">Dellizo Warehouse</h4>
+                <p class="text-black">
+                  Your go-to platform for seamless warehouse bookings and
+                  management.
+                </p>
+              </div>
+    
+              <!-- Column 2: Contact Us -->
+              <div class="text-center px-10 md:text-right">
+                <h4 class="text-lg font-bold mb-4">Contact Us</h4>
+                <p class="text-black">Email: info@dellizo.com</p>
+                <p class="text-black">Phone: +91 12345 67890</p>
+              </div>
+            </div>
+    
+            <!-- Footer Bottom -->
+            <div class="text-center text-gray-500 mt-6">
+              <p>&copy; 2024 Dellizo Warehouse. All Rights Reserved.</p>
+            </div>
+          </div>
+        </footer>
+
+    <!-- JavaScript for Carousel -->
+    <script>
+      let index = 0;
+      const slides = document.querySelectorAll(".carousel-item");
+      const totalSlides = slides.length;
+
+      function getVisibleSlides() {
+        const screenWidth = window.innerWidth;
+        if (screenWidth >= 1280) {
+          // xl screen size or larger
+          return 3; // Show only the first 3 slides
+        } else {
+          return totalSlides; // Show all slides on smaller screens
+        }
+      }
+
+      function showSlide(i) {
+        const visibleSlides = getVisibleSlides();
+        slides.forEach((slide, idx) => {
+          if (idx < visibleSlides) {
+            slide.style.transform = `translateX(${(idx - i) * 100}%)`;
+          } else {
+            slide.style.display = "none";
+          }
+        });
+      }
+
+      function nextSlide() {
+        const visibleSlides = getVisibleSlides();
+        index = (index + 1) % visibleSlides;
+        showSlide(index);
+      }
+
+      function prevSlide() {
+        const visibleSlides = getVisibleSlides();
+        index = (index - 1 + visibleSlides) % visibleSlides;
+        showSlide(index);
+      }
+
+      showSlide(index);
+      setInterval(nextSlide, 5000); // Auto-slide every 5 seconds
+
+      window.addEventListener("resize", () => {
+        showSlide(index); // Recalculate slide visibility on window resize
+      });
+      document
+        .getElementById("profile-menu-button")
+        .addEventListener("click", function () {
+          const dropdown = document.getElementById("profile-dropdown");
+          dropdown.classList.toggle("hidden");
+        });
+    </script>
+  </body>
+</html>

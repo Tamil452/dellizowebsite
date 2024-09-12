@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Account</title>
+    <!-- Tailwind CSS CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@^2.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div
+      class="bg-white w-full max-w-4xl rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row"
+    >
+      <!-- Left Section -->
+      <div class="w-full md:w-1/2 p-8">
+        <h2 class="text-3xl font-bold mb-4 text-gray-800">
+          Create Your Account
+        </h2>
+        <p class="mb-6 text-gray-600">
+          Use the email <strong class="text-blue-600">{{ email }}</strong> to
+          create your account.
+        </p>
+        <form method="post" class="space-y-6 flex flex-col justify-center h-52">
+          <!-- {% csrf_token %} -->
+
+          <div>
+            <label for="password" class="block text-gray-700 font-medium"
+              >Password:</label
+            >
+            <input
+              type="password"
+              id="password"
+              name="password"
+              required
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </div>
+
+          <!-- Hidden field to pass email value -->
+          <input type="hidden" name="email" value="{{ email }}" />
+
+          <a
+            href="/login.html"
+            type="submit"
+            class="w-full text-center bg-purple-600 text-white rounded-lg py-2 font-semibold shadow-sm hover:bg-purple-700 transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-purple-500"
+          >
+            Create Account
+          </a>
+        </form>
+      </div>
+
+      <!-- Right Section with Image -->
+      <div
+        class="w-full hidden md:block md:w-1/2 bg-blue-500 text-white flex flex-col items-center justify-center p-8 space-y-6"
+      >
+        <h3 class="text-2xl font-bold">Welcome to Our Platform</h3>
+        <p class="text-blue-200 text-center">
+          Join us and explore new opportunities with your new account.
+        </p>
+        <img
+          src="https://img.freepik.com/free-vector/two-factor-authentication-concept-illustration_114360-5598.jpg?t=st=1723541726~exp=1723545326~hmac=3a5079861c990504b87dff00ca2834ff82db6bc58b00dc41aa5aadb787def954&w=740"
+          alt="Illustration"
+          class="w-full h-52 object-cover rounded-lg"
+        />
+      </div>
+    </div>
+  </body>
+</html>

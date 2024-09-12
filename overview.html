@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WarehouseConnect Dashboard</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+      <!-- Navbar -->
+    <!-- Header -->
+    <nav class="bg-blue-100 border-gray-200">
+      <div
+        class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
+      >
+        <!-- Left Logo Section -->
+        <a href="#" class="flex items-center">
+          <img
+            src="https://flowbite.com/docs/images/logo.svg"
+            class="h-8"
+            alt="Flowbite Logo"
+          />
+          <span
+            class="self-center text-2xl font-semibold px-3 whitespace-nowrap"
+            >Dellizo</span
+          >
+        </a>
+
+        <!-- Center Navigation Links -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="Landing.html" class="text-gray-700 hover:text-blue-500">Home</a>
+          <a href="addWarehouse.html" class="text-gray-700 hover:text-blue-500">Warehouses</a>
+          <a href="overview.html" class="text-gray-700 hover:text-blue-500">Bookings</a>
+          <a href="Landing.html" class="text-gray-700 hover:text-blue-500">Contact</a>
+        </div>
+
+        <!-- Right Profile Section -->
+        <div class="flex items-center md:order-2 space-x-4">
+          <!-- Profile picture with dropdown -->
+          <div class="relative">
+            <button
+              type="button"
+              class="flex items-center space-x-3 rounded-full focus:outline-none"
+              id="profile-menu-button"
+              aria-expanded="false"
+              data-dropdown-toggle="profile-dropdown"
+            >
+              <img
+                src="https://i.pravatar.cc/40"
+                class="w-10 h-10 rounded-full"
+                alt="Profile"
+              />
+              <span class="text-gray-900">John Doe</span>
+            </button>
+
+            <!-- Dropdown menu -->
+            <div
+              id="profile-dropdown"
+              class="z-10 hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg"
+            >
+              <ul class="py-2 text-sm text-gray-700">
+                <li>
+                  <a href="overview.html" class="block px-4 py-2 hover:bg-gray-100"
+                    >Dashboard</a
+                  >
+                </li>
+                <li>
+                  <a href="inbox.html" class="block px-4 py-2 hover:bg-gray-100"
+                    >My Inbox</a
+                  >
+                </li>
+                <li>
+                  <a href="dashboard.html" class="block px-4 py-2 hover:bg-gray-100"
+                    >Profile</a
+                  >
+                </li>
+                <li><hr class="border-t border-gray-200" /></li>
+                <li>
+                  <a
+                    href="login.html"
+                    class="block px-4 py-2 text-red-600 hover:bg-gray-100"
+                    >Logout</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+  <!-- Main Content -->
+  <main class="flex-1 p-8">
+    <!-- Header Section -->
+    <div class="flex justify-between mb-8 bg-gradient-to-r from-blue-500 to-indigo-600 p-8 rounded-xl shadow-xl">
+      <!-- Recent Activity Section -->
+      <div>
+        <h1 class="text-4xl font-extrabold text-white mb-4">Recent Activity</h1>
+        <ul class="text-white space-y-3">
+          <li class="flex items-center">
+            <span class="bg-green-500 text-white rounded-full p-2 mr-3">
+              <i class="fas fa-calendar-check"></i>
+            </span>
+            <span><strong>5 new bookings</strong> confirmed today</span>
+          </li>
+          <li class="flex items-center">
+            <span class="bg-yellow-500 text-white rounded-full p-2 mr-3">
+              <i class="fas fa-exclamation-circle"></i>
+            </span>
+            <span><strong>2 pending payments</strong> awaiting clearance</span>
+          </li>
+          <li class="flex items-center">
+            <span class="bg-blue-500 text-white rounded-full p-2 mr-3">
+              <i class="fas fa-warehouse"></i>
+            </span>
+            <span><strong>3 warehouses</strong> updated availability status</span>
+          </li>
+        </ul>
+      </div>
+    
+      <!-- Notifications Section -->
+      <div class="flex items-center space-x-6">
+        <div class="bg-white p-6 rounded-lg shadow-lg text-gray-700">
+          <h2 class="text-2xl font-semibold text-indigo-600 mb-4">Notifications</h2>
+          <ul class="space-y-3">
+            <li class="flex items-center">
+              <span class="bg-blue-100 text-blue-500 p-2 rounded-full mr-3">
+                <i class="fas fa-envelope"></i>
+              </span>
+              <span>New message from Warehouse #002 owner.</span>
+            </li>
+            <li class="flex items-center">
+              <span class="bg-green-100 text-green-500 p-2 rounded-full mr-3">
+                <i class="fas fa-money-check-alt"></i>
+              </span>
+              <span>Payment update from booking #1234.</span>
+            </li>
+            <li class="flex items-center">
+              <span class="bg-orange-100 text-orange-500 p-2 rounded-full mr-3">
+                <i class="fas fa-user-circle"></i>
+              </span>
+              <span>Your profile is 90% complete.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    
+
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+      <!-- Total Warehouses Card -->
+      <div class="bg-gradient-to-r from-blue-500 to-purple-500 text-white p-6 rounded-lg shadow-lg flex items-center space-x-4 transform hover:scale-105 transition-transform">
+        <div class="p-4 bg-white bg-opacity-25 rounded-full">
+          <i class="fas fa-boxes fa-2x"></i>
+        </div>
+        <div>
+          <p class="text-gray-200">Total Warehouses</p>
+          <p class="text-2xl font-bold mt-2">10</p>
+        </div>
+      </div>
+
+      <!-- Available Spaces Card -->
+      <div class="bg-gradient-to-r from-green-400 to-teal-400 text-white p-6 rounded-lg shadow-lg flex items-center space-x-4 transform hover:scale-105 transition-transform">
+        <div class="p-4 bg-white bg-opacity-25 rounded-full">
+          <i class="fas fa-warehouse fa-2x"></i>
+        </div>
+        <div>
+          <p class="text-gray-200">Available Spaces</p>
+          <p class="text-2xl font-bold mt-2">5</p>
+        </div>
+      </div>
+
+      <!-- Booked Spaces Card -->
+      <div class="bg-gradient-to-r from-red-500 to-pink-500 text-white p-6 rounded-lg shadow-lg flex items-center space-x-4 transform hover:scale-105 transition-transform">
+        <div class="p-4 bg-white bg-opacity-25 rounded-full">
+          <i class="fas fa-calendar-check fa-2x"></i>
+        </div>
+        <div>
+          <p class="text-gray-200">Booked Spaces</p>
+          <p class="text-2xl font-bold mt-2">5</p>
+        </div>
+      </div>
+
+      <!-- Pending Payments Card -->
+      <div class="bg-gradient-to-r from-yellow-500 to-orange-500 text-white p-6 rounded-lg shadow-lg flex items-center space-x-4 transform hover:scale-105 transition-transform">
+        <div class="p-4 bg-white bg-opacity-25 rounded-full">
+          <i class="fas fa-clock fa-2x"></i>
+        </div>
+        <div>
+          <p class="text-gray-200">Pending Payments</p>
+          <p class="text-2xl font-bold mt-2">₹1000</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Charts Section -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+      <!-- Bar Chart -->
+      <div class="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition-transform">
+        <h3 class="text-xl font-semibold text-gray-700 mb-4">Bookings Overview</h3>
+        <canvas id="barChart"></canvas>
+      </div>
+
+      <!-- Line Chart -->
+      <div class="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition-transform">
+        <h3 class="text-xl font-semibold text-gray-700 mb-4">Payment Trends</h3>
+        <canvas id="lineChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Top Warehouses Table -->
+    <div class="bg-white p-6 rounded-lg shadow-lg">
+      <h3 class="text-xl font-semibold text-gray-700 mb-4">Top Warehouses</h3>
+      <table class="w-full text-left table-auto border-collapse">
+        <thead class="bg-gray-100">
+          <tr>
+            <th class="px-4 py-2 text-gray-600">ID</th>
+            <th class="px-4 py-2 text-gray-600">Location</th>
+            <th class="px-4 py-2 text-gray-600">Size</th>
+            <th class="px-4 py-2 text-gray-600">Available Spaces</th>
+            <th class="px-4 py-2 text-gray-600">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="hover:bg-gray-50">
+            <td class="border px-4 py-2">#001</td>
+            <td class="border px-4 py-2">Chennai</td>
+            <td class="border px-4 py-2">20,000 sqft</td>
+            <td class="border px-4 py-2">5</td>
+            <td class="border px-4 py-2 text-green-500">Available</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="border px-4 py-2">#002</td>
+            <td class="border px-4 py-2">Bengaluru</td>
+            <td class="border px-4 py-2">15,000 sqft</td>
+            <td class="border px-4 py-2">3</td>
+            <td class="border px-4 py-2 text-red-500">Booked</td>
+          </tr>
+          <!-- Add more rows as necessary -->
+        </tbody>
+      </table>
+    </div>
+  </main>
+  <!-- Footer -->
+  <footer class="bg-blue-100 text-black py-6 mt-10">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Column 1: Dellizo Warehouse Info -->
+        <div class="text-center px-10 md:text-left">
+          <h4 class="text-lg font-bold mb-4">Dellizo Warehouse</h4>
+          <p class="text-black">
+            Your go-to platform for seamless warehouse bookings and
+            management.
+          </p>
+        </div>
+
+        <!-- Column 2: Contact Us -->
+        <div class="text-center px-10 md:text-right">
+          <h4 class="text-lg font-bold mb-4">Contact Us</h4>
+          <p class="text-black">Email: info@dellizo.com</p>
+          <p class="text-black">Phone: +91 12345 67890</p>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="text-center text-gray-500 mt-6">
+        <p>&copy; 2024 Dellizo Warehouse. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Bar Chart for Bookings Overview
+    const barCtx = document.getElementById('barChart').getContext('2d');
+    new Chart(barCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+          label: 'Bookings',
+          data: [10, 15, 20, 25, 30, 35],
+          backgroundColor: '#4F46E5',
+        }]
+      },
+      options: {
+        scales: {
+          y: { beginAtZero: true }
+        }
+      }
+    });
+
+    // Line Chart for Payment Trends
+    const lineCtx = document.getElementById('lineChart').getContext('2d');
+    new Chart(lineCtx, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+          label: 'Payments',
+          data: [5000, 7000, 8000, 6000, 9000, 10000],
+          borderColor: '#10B981',
+          backgroundColor: 'rgba(16, 185, 129, 0.2)',
+          fill: true,
+        }]
+      },
+      options: {
+        scales: {
+          y: { beginAtZero: true }
+        }
+      }
+    });
+      // Toggle dropdown visibility
+      document
+        .getElementById("profile-menu-button")
+        .addEventListener("click", function () {
+          const dropdown = document.getElementById("profile-dropdown");
+          dropdown.classList.toggle("hidden");
+        });
+  </script>
+
+</body>
+</html>

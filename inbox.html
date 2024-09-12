@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modernized Mail Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 50;
+    }
+
+    .modal-content {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      max-width: 600px;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      z-index: 100;
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+  <!-- Header -->
+  <nav class="bg-blue-100 border-gray-200">
+    <div
+      class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
+    >
+      <!-- Left Logo Section -->
+      <a href="#" class="flex items-center">
+        <img
+          src="https://flowbite.com/docs/images/logo.svg"
+          class="h-8"
+          alt="Flowbite Logo"
+        />
+        <span
+          class="self-center text-2xl font-semibold px-3 whitespace-nowrap"
+          >Dellizo</span
+        >
+      </a>
+
+      <!-- Center Navigation Links -->
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="Landing.html" class="text-gray-700 hover:text-blue-500">Home</a>
+        <a href="addWarehouse.html" class="text-gray-700 hover:text-blue-500">Warehouses</a>
+        <a href="overview.html" class="text-gray-700 hover:text-blue-500">Bookings</a>
+        <a href="Landing.html" class="text-gray-700 hover:text-blue-500">Contact</a>
+      </div>
+
+      <!-- Right Profile Section -->
+      <div class="flex items-center md:order-2 space-x-4">
+        <!-- Profile picture with dropdown -->
+        <div class="relative">
+          <button
+            type="button"
+            class="flex items-center space-x-3 rounded-full focus:outline-none"
+            id="profile-menu-button"
+            aria-expanded="false"
+            data-dropdown-toggle="profile-dropdown"
+          >
+            <img
+              src="https://i.pravatar.cc/40"
+              class="w-10 h-10 rounded-full"
+              alt="Profile"
+            />
+            <span class="text-gray-900">John Doe</span>
+          </button>
+
+          <!-- Dropdown menu -->
+          <div
+            id="profile-dropdown"
+            class="z-10 hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg"
+          >
+            <ul class="py-2 text-sm text-gray-700">
+              <li>
+                <a href="overview.html" class="block px-4 py-2 hover:bg-gray-100"
+                  >Dashboard</a
+                >
+              </li>
+              <li>
+                <a href="inbox.html" class="block px-4 py-2 hover:bg-gray-100"
+                  >My Inbox</a
+                >
+              </li>
+              <li>
+                <a href="dashboard.html" class="block px-4 py-2 hover:bg-gray-100"
+                  >Profile</a
+                >
+              </li>
+              <li><hr class="border-t border-gray-200" /></li>
+              <li>
+                <a
+                  href="login.html"
+                  class="block px-4 py-2 text-red-600 hover:bg-gray-100"
+                  >Logout</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  
+
+  <main class="flex h-screen">
+    <!-- Sidebar Section -->
+    <nav class="bg-white w-1/5 border-r p-4 shadow-md">
+      <button id="newMessageButton" class="bg-blue-500 text-white w-full py-2 rounded-lg mb-4 flex items-center justify-center space-x-2 hover:bg-blue-600 transition">
+        <i class="fas fa-edit"></i> 
+        <span>New Messages</span>
+      </button>
+      <ul class="space-y-4" id="sidebarMenu">
+        <li class="flex items-center space-x-2 text-gray-700 font-bold cursor-pointer hover:text-blue-500 transition" data-inbox="inbox">
+          <i class="fas fa-inbox"></i>
+          <span>Inbox (24)</span>
+        </li>
+        <li class="flex items-center space-x-2 text-gray-600 cursor-pointer hover:text-blue-500 transition" data-inbox="sent">
+          <i class="fas fa-paper-plane"></i>
+          <span>Sent</span>
+        </li>
+        <li class="flex items-center space-x-2 text-gray-600 cursor-pointer hover:text-blue-500 transition" data-inbox="starred">
+          <i class="fas fa-star"></i>
+          <span>Starred</span>
+        </li>
+        <li class="flex items-center space-x-2 text-gray-600 cursor-pointer hover:text-blue-500 transition" data-inbox="flagged">
+          <i class="fas fa-flag"></i>
+          <span>Flagged</span>
+        </li>
+        <li class="flex items-center space-x-2 text-gray-600 cursor-pointer hover:text-blue-500 transition" data-inbox="draft">
+          <i class="fas fa-file-alt"></i>
+          <span>Draft</span>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Email List Section -->
+    <section class="w-2/5 p-4 bg-white border-r shadow-md">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="font-bold text-xl text-gray-800" id="inboxTitle">My Inbox</h2>
+        <div class="relative">
+          <input class="border rounded-lg px-4 py-2 w-56 focus:outline-none focus:ring-2 focus:ring-blue-500" type="text" placeholder="Search...">
+          <i class="fas fa-search absolute top-3 right-3 text-gray-400"></i>
+        </div>
+      </div>
+      <ul class="space-y-2" id="inboxList">
+        <!-- Inbox messages will be inserted here dynamically -->
+      </ul>
+    </section>
+
+    <!-- Email Content Section -->
+    <section class="w-3/7 p-4 bg-white shadow-md">
+      <div class="flex justify-between items-center mb-4">
+        <div class="flex items-center">
+          <img class="w-10 h-10 rounded-full mr-2" src="https://via.placeholder.com/100" alt="John Gimbal">
+          <div>
+            <p class="font-bold text-lg">John Gimbal</p>
+            <p class="text-sm text-gray-500">johngimbal@gmail.com</p>
+          </div>
+        </div>
+        <p class="text-sm text-gray-400">Dec 15, 10:00 AM</p>
+      </div>
+      <h2 class="font-bold text-2xl mb-2 text-gray-800">New features now available</h2>
+      <p class="text-sm text-gray-600 mb-4">
+        We wanted to let you know that we have added some new features to our services that will benefit your business. 
+        These features include inbox messages, added messages, and more. Let us know if you would like to schedule a demo.
+      </p>
+
+      <div class="border-t pt-4">
+        <h3 class="font-bold text-lg mb-2">Attachments</h3>
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <p class="text-gray-500">Brief Product.pdf</p>
+            <a href="#" class="text-blue-500 hover:underline">View / Download</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <textarea class="w-full border p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" rows="4" placeholder="Type something..."></textarea>
+        <button class="bg-blue-500 text-white mt-2 px-4 py-2 rounded-lg hover:bg-blue-600 transition">Send</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal for Compose New Message -->
+  <div id="modalOverlay" class="modal-overlay">
+    <div class="modal-content">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-lg font-bold">New Message</h2>
+        <button id="closeModalButton" class="text-gray-400 hover:text-gray-600 transition"><i class="fas fa-times"></i></button>
+      </div>
+      <form class="space-y-4">
+        <div>
+          <label class="block text-sm font-bold mb-1">To:</label>
+          <input class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" type="text" placeholder="Enter recipient...">
+        </div>
+        <div>
+          <label class="block text-sm font-bold mb-1">CC:</label>
+          <input class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" type="text" placeholder="Enter CC...">
+        </div>
+        <div>
+          <label class="block text-sm font-bold mb-1">Subject:</label>
+          <input class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" type="text" placeholder="Enter subject...">
+        </div>
+        <div>
+          <label class="block text-sm font-bold mb-1">Message:</label>
+          <textarea class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" rows="6" placeholder="Type your message..."></textarea>
+        </div>
+        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">Send</button>
+      </form>
+    </div>
+  </div>
+  <!-- Footer -->
+  <footer class="bg-blue-100 text-black py-6 mt-10">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Column 1: Dellizo Warehouse Info -->
+        <div class="text-center px-10 md:text-left">
+          <h4 class="text-lg font-bold mb-4">Dellizo Warehouse</h4>
+          <p class="text-black">
+            Your go-to platform for seamless warehouse bookings and
+            management.
+          </p>
+        </div>
+
+        <!-- Column 2: Contact Us -->
+        <div class="text-center px-10 md:text-right">
+          <h4 class="text-lg font-bold mb-4">Contact Us</h4>
+          <p class="text-black">Email: info@dellizo.com</p>
+          <p class="text-black">Phone: +91 12345 67890</p>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="text-center text-gray-500 mt-6">
+        <p>&copy; 2024 Dellizo Warehouse. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal and Dynamic Inbox Script -->
+  <script>
+    const modalOverlay = document.getElementById('modalOverlay');
+    const newMessageButton = document.getElementById('newMessageButton');
+    const closeModalButton = document.getElementById('closeModalButton');
+    const sidebarMenu = document.getElementById('sidebarMenu');
+    const inboxTitle = document.getElementById('inboxTitle');
+    const inboxList = document.getElementById('inboxList');
+
+    const inboxData = {
+      inbox: [
+        { photo: 'https://via.placeholder.com/50', sender: 'John Gimbal', subject: 'New features now available', content: 'Check out the new features...', date: 'Dec 15, 10:00 AM' },
+        { photo: 'https://via.placeholder.com/50', sender: 'Jane Doe', subject: 'Meeting tomorrow', content: 'Let\'s confirm the meeting...', date: 'Dec 14, 09:30 AM' }
+      ],
+      sent: [
+        { photo: 'https://via.placeholder.com/50', sender: 'You', subject: 'Monthly report', content: 'Attached is the report...', date: 'Dec 13, 08:20 AM' },
+        { photo: 'https://via.placeholder.com/50', sender: 'You', subject: 'Product demo feedback', content: 'Here is the feedback...', date: 'Dec 12, 11:45 AM' }
+      ],
+      starred: [
+        { photo: 'https://via.placeholder.com/50', sender: 'Alice Blue', subject: 'Event Invitation', content: 'You\'re invited to...', date: 'Dec 10, 04:30 PM' },
+        { photo: 'https://via.placeholder.com/50', sender: 'Bob Green', subject: 'Contract Review', content: 'Please review the contract...', date: 'Dec 09, 02:15 PM' }
+      ],
+      flagged: [
+        { photo: 'https://via.placeholder.com/50', sender: 'Mark Red', subject: 'Payment reminder', content: 'Your payment is due...', date: 'Dec 07, 11:10 AM' },
+        { photo: 'https://via.placeholder.com/50', sender: 'Paul Yellow', subject: 'Final invoice', content: 'Here\'s your final invoice...', date: 'Dec 06, 03:45 PM' }
+      ],
+      draft: [
+        { photo: 'https://via.placeholder.com/50', sender: 'Draft 1', subject: 'Draft for project X', content: 'Here\'s the draft...', date: 'Dec 05, 09:00 AM' }
+      ]
+    };
+
+    function updateInbox(listType) {
+      inboxList.innerHTML = '';
+      inboxTitle.innerText = listType.charAt(0).toUpperCase() + listType.slice(1);
+      
+      inboxData[listType].forEach(item => {
+        const li = document.createElement('li');
+        li.classList.add('border', 'p-4', 'rounded-lg', 'hover:bg-gray-50', 'cursor-pointer', 'flex', 'items-center', 'space-x-4');
+        li.innerHTML = `
+          <img class="w-10 h-10 rounded-full" src="${item.photo}" alt="${item.sender}">
+          <div>
+            <div class="font-bold text-gray-800">${item.sender}</div>
+            <p class="text-sm text-gray-600">${item.subject}</p>
+            <p class="text-sm text-gray-500">${item.content}</p>
+            <span class="text-xs text-gray-400">${item.date}</span>
+          </div>
+        `;
+        inboxList.appendChild(li);
+      });
+    }
+
+    sidebarMenu.addEventListener('click', (event) => {
+      const listType = event.target.closest('li').dataset.inbox;
+      if (listType) {
+        updateInbox(listType);
+      }
+    });
+
+    newMessageButton.addEventListener('click', () => {
+      modalOverlay.style.display = 'block';
+    });
+
+    closeModalButton.addEventListener('click', () => {
+      modalOverlay.style.display = 'none';
+    });
+
+    window.addEventListener('click', (event) => {
+      if (event.target == modalOverlay) {
+        modalOverlay.style.display = 'none';
+      }
+    });
+
+    // Initialize with inbox data
+    updateInbox('inbox');
+
+     // Toggle dropdown visibility
+     document
+        .getElementById("profile-menu-button")
+        .addEventListener("click", function () {
+          const dropdown = document.getElementById("profile-dropdown");
+          dropdown.classList.toggle("hidden");
+        });
+  </script>
+</body>
+</html>
