@@ -4,13 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Add Warehouse</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
+
     <style>
       /* Style for the custom dropdown with checkboxes */
       .dropdown {
         position: relative;
         display: inline-block;
-        width: 950px;
+        margin: 0 20px;
+        width: 100%; /* Full width by default */
+        max-width: 750px; /* Maximum width for larger screens */
+      }
+
+      @media (max-width: 1024px) {
+        .dropdown {
+          width: 75%; /* Adjust for tablets */
+        }
+      }
+
+      @media (max-width: 768px) {
+        .dropdown {
+          width: 100%; /* Full width for mobile */
+        }
       }
 
       .dropdown-content {
@@ -19,10 +35,22 @@
         background-color: #f9f9f9;
         box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
         padding: 12px 16px;
-        width: 1000px;
+        width: 700px;
         z-index: 1;
         max-height: 200px;
         overflow-y: auto;
+      }
+
+      @media (max-width: 1024px) {
+        .dropdown-content {
+          width: 75%; /* Adjust for tablets */
+        }
+      }
+
+      @media (max-width: 768px) {
+        .dropdown-content {
+          width: 100%; /* Full width for mobile */
+        }
       }
 
       .dropdown:hover .dropdown-content {
@@ -40,385 +68,476 @@
       }
     </style>
   </head>
-  <body class="bg-white">
-    <div class="max-w-4xl mx-auto mt-10">
-      <h2 class="text-3xl font-bold mb-6 text-center">Add Warehouse</h2>
-
-      <!-- Section 1: Name, Location, Type -->
-      <div id="section1" class="form-section space-y-6">
-        <h3 class="text-xl font-semibold mb-10">Warehouse Details</h3>
-
-        <!-- Warehouse Name Field -->
-        <div class="mb-4 relative">
-          <input
-            type="text"
-            id="name"
-            class="block w-full px-2.5 pb-2.5 pt-4 text-sm text-gray-900 bg-transparent border-b border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-500 peer"
-            placeholder=" "
-          />
-          <label
-            for="name"
-            class="absolute text-sm text-gray-700 font-bold duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-            >Warehouse Name</label
-          >
-        </div>
-
-        <!-- Location Field -->
-        <div class="mb-4 relative">
-          <input
-            type="text"
-            id="location"
-            class="block w-full px-2.5 pb-2.5 pt-4 text-sm text-gray-900 bg-transparent border-b border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-500 peer"
-            placeholder=" "
-          />
-          <label
-            for="location"
-            class="absolute text-sm text-gray-700 font-bold duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-            >Location</label
-          >
-        </div>
-
-        <!-- Warehouse Type Field -->
-        <div class="mb-4 relative">
-          <select
-            id="warehouseType"
-            class="block w-full px-2.5 pb-2.5 pt-4 text-sm text-gray-900 bg-transparent border-b border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-500 peer"
-            placeholder=" "
-          >
-            <option value="" disabled selected></option>
-            <option value="general">General Warehouse</option>
-            <option value="cold_storage">Cold Storage</option>
-            <option value="hazardous">Hazardous Materials Warehouse</option>
-            <option value="automated">Automated Warehouse</option>
-          </select>
-          <label
-            for="warehouseType"
-            class="absolute text-sm text-gray-700 font-bold duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-            >Type of Warehouse</label
-          >
-        </div>
-      </div>
-
-      <!-- Section 2: Facilities, Permitted and Prohibited Items -->
-      <div id="section2" class="form-section hidden">
-        <!-- Facilities and Amenities -->
-        <div class="mb-4">
-          <label
-            for="facilitiesDropdown"
-            class="text-lg font-semibold mb-4 block text-gray-900"
-            >Facilities and Amenities</label
-          >
-          <div class="dropdown">
-            <button class="bg-gray-200 w-[800px] px-4 py-2 rounded-lg">
-              Select Facilities
-            </button>
-            <div class="dropdown-content">
-              <label
-                ><input
-                  type="checkbox"
-                  id="facilitiesSelectAll"
-                  onchange="selectAll('facilities', this)"
-                />
-                Select All</label
-              >
-              <label
-                ><input
-                  type="checkbox"
-                  class="facilitiesOption"
-                  value="Fire Extinguishers"
-                />
-                Fire Extinguishers</label
-              >
-              <label
-                ><input
-                  type="checkbox"
-                  class="facilitiesOption"
-                  value="Fire Alarms"
-                />
-                Fire Alarms</label
-              >
-              <label
-                ><input type="checkbox" class="facilitiesOption" value="CCTV" />
-                CCTV</label
-              >
-              <label
-                ><input
-                  type="checkbox"
-                  class="facilitiesOption"
-                  value="Emergency Exits"
-                />
-                Emergency Exits</label
-              >
-              <label
-                ><input
-                  type="checkbox"
-                  class="facilitiesOption"
-                  value="Loading Docks"
-                />
-                Loading Docks</label
-              >
-              <label
-                ><input
-                  type="checkbox"
-                  class="facilitiesOption"
-                  value="Forklifts"
-                />
-                Forklifts</label
-              >
-              <label
-                ><input
-                  type="checkbox"
-                  class="facilitiesOption"
-                  value="Wi-Fi"
-                />
-                Wi-Fi</label
-              >
-              <label
-                ><input
-                  type="checkbox"
-                  class="facilitiesOption"
-                  value="Office Space"
-                />
-                Office Space</label
-              >
-              <label
-                ><input
-                  type="checkbox"
-                  class="facilitiesOption"
-                  value="Parking Space"
-                />
-                Parking Space</label
-              >
-              <label
-                ><input
-                  type="checkbox"
-                  class="facilitiesOption"
-                  value="Backup Generator"
-                />
-                Backup Generator</label
-              >
-              <label
-                ><input
-                  type="checkbox"
-                  class="facilitiesOption"
-                  value="Waste Disposal"
-                />
-                Waste Disposal</label
-              >
-              <label
-                ><input
-                  type="checkbox"
-                  class="facilitiesOption"
-                  value="Dock Levelers"
-                />
-                Dock Levelers</label
-              >
-              <label
-                ><input
-                  type="checkbox"
-                  class="facilitiesOption"
-                  value="Lift Equipment"
-                />
-                Lift Equipment</label
-              >
-              <label
-                ><input
-                  type="checkbox"
-                  class="facilitiesOption"
-                  value="Water Supply"
-                />
-                Water Supply</label
-              >
-              <label
-                ><input
-                  type="checkbox"
-                  class="facilitiesOption"
-                  value="Truck Access"
-                />
-                Truck Access</label
-              >
-              <label
-                ><input
-                  type="checkbox"
-                  class="facilitiesOption"
-                  value="High Ceilings"
-                />
-                High Ceilings</label
-              >
-              <label
-                ><input
-                  type="checkbox"
-                  class="facilitiesOption"
-                  value="Cold Storage"
-                />
-                Cold Storage</label
-              >
-              <label
-                ><input
-                  type="checkbox"
-                  class="facilitiesOption"
-                  value="Emergency Power"
-                />
-                Emergency Power</label
-              >
-              <label
-                ><input
-                  type="checkbox"
-                  class="facilitiesOption"
-                  value="Fire Escape"
-                />
-                Fire Escape</label
-              >
-            </div>
-          </div>
-          <div id="facilitiesList" class="mt-6 flex flex-wrap gap-2"></div>
-        </div>
-
-        <!-- Permitted Items -->
-        <div class="mb-4">
-          <label
-            for="prohibitedItemsDropdown"
-            class="text-lg font-semibold mb-4 block text-gray-900"
-            >Permitted Items</label
-          >
-          <div class="dropdown">
-            <button class="w-[800px] bg-gray-200 px-4 py-2 rounded-lg">
-              Select Permitted Items
-            </button>
-            <div class="dropdown-content">
-              <label
-                ><input
-                  type="checkbox"
-                  id="permittedItemsSelectAll"
-                  onchange="selectAll('permittedItems', this)"
-                />
-                Select All</label
-              >
-              <label
-                ><input
-                  type="checkbox"
-                  class="permittedItemsOption"
-                  value="Electronics"
-                />
-                Electronics</label
-              >
-              <label
-                ><input
-                  type="checkbox"
-                  class="permittedItemsOption"
-                  value="Furniture"
-                />
-                Furniture</label
-              >
-              <label
-                ><input
-                  type="checkbox"
-                  class="permittedItemsOption"
-                  value="Chemicals"
-                />
-                Chemicals</label
-              >
-            </div>
-          </div>
-          <div id="permittedItemsList" class="mt-2 flex flex-wrap gap-2"></div>
-        </div>
-
-        <!-- Prohibited Items -->
-        <div class="my-6">
-          <label
-            for="prohibitedItemsDropdown"
-            class="text-lg font-semibold mb-4 block text-gray-900"
-            >Prohibited Items</label
-          >
-          <div class="dropdown">
-            <button class="w-[800px] bg-gray-200 px-4 py-2 rounded-lg">
-              Select Prohibited Items
-            </button>
-            <div class="dropdown-content">
-              <label
-                ><input
-                  type="checkbox"
-                  id="prohibitedItemsSelectAll"
-                  onchange="selectAll('prohibitedItems', this)"
-                />
-                Select All</label
-              >
-              <label
-                ><input
-                  type="checkbox"
-                  class="prohibitedItemsOption"
-                  value="Explosives"
-                />
-                Explosives</label
-              >
-              <label
-                ><input
-                  type="checkbox"
-                  class="prohibitedItemsOption"
-                  value="Perishables"
-                />
-                Perishables</label
-              >
-              <label
-                ><input
-                  type="checkbox"
-                  class="prohibitedItemsOption"
-                  value="Flammable Liquids"
-                />
-                Flammable Liquids</label
-              >
-            </div>
-          </div>
-          <div id="prohibitedItemsList" class="mt-2 flex flex-wrap gap-2"></div>
-        </div>
-      </div>
-
-      <!-- Section 3: Image Upload -->
-      <div id="section3" class="form-section hidden">
-        <h3 class="text-xl font-semibold mb-4">Image Upload</h3>
-        <div class="mb-4">
-          <label for="uploadImages" class="block text-gray-700"
-            >Upload Images</label
-          >
-          <input
-            type="file"
-            id="uploadImages"
-            class="w-full px-4 py-2 border rounded-lg"
-            multiple
+  <body>
+    <div class="flex justify-center items-center min-h-screen bg-gray-100">
+      <div
+        class="w-full max-w-6xl h-auto bg-blue-300 rounded-lg shadow-md p-8 flex flex-col lg:flex-row"
+      >
+        <!-- Left Section: Image (hidden on smaller screens) -->
+        <div class="w-full lg:w-1/3 bg-blue-500 rounded-lg hidden lg:block">
+          <img
+            src="images/image.png"
+            alt="Illustration"
+            class="h-full w-full object-cover rounded-lg"
           />
         </div>
-      </div>
 
-      <!-- Navigation Buttons -->
-      <div class="flex justify-center items-center w-full my-10">
-        <div class="flex justify-between mt-6">
-          <button
-            id="prevBtn"
-            class="bg-gray-500 w-48 text-white mx-5 px-4 py-2 rounded-lg hidden"
-            onclick="showPreviousSection()"
-          >
-            Previous
-          </button>
-          <button
-            id="nextBtn"
-            class="bg-blue-500 w-48 text-white mx-5 px-4 py-2 rounded-lg"
-            onclick="showNextSection()"
-          >
-            Next
-          </button>
+        <!-- Right Section: Form -->
+        <div class="w-full lg:w-2/3 p-8">
+          <!-- Step Indicators -->
+          <div class="flex justify-between items-center mb-6">
+            <div class="flex space-x-4">
+              <button
+                id="step1-btn"
+                class="bg-gray-300 text-black rounded-sm w-8 h-8 flex items-center justify-center"
+              >
+                1
+              </button>
+              <button
+                id="step2-btn"
+                class="bg-gray-300 text-black rounded-sm w-8 h-8 flex items-center justify-center"
+              >
+                2
+              </button>
+              <button
+                id="step3-btn"
+                class="bg-gray-300 text-black rounded-sm w-8 h-8 flex items-center justify-center"
+              >
+                3
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 1: Name and Location -->
+          <div id="step1" class="space-y-4">
+            <h2 class="text-xl lg:text-2xl font-semibold mb-4">
+              Step 1/3: Warehouse Details
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="lg:my-5">
+                <label class="block mb-2 text-md font-bold text-gray-600"
+                  >Warehouse Name</label
+                >
+                <input
+                  type="text"
+                  class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 focus:outline-none"
+                />
+              </div>
+              <div class="lg:my-5">
+                <label class="block mb-2 text-md text-gray-600 font-bold"
+                  >Location</label
+                >
+                <select
+                  class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 focus:outline-none"
+                >
+                  <option value="default">Select Location</option>
+                  <option value="Ariyalur">Ariyalur</option>
+                  <option value="Chengalpattu">Chengalpattu</option>
+                  <option value="Chennai">Chennai</option>
+                  <option value="Coimbatore">Coimbatore</option>
+                  <option value="Cuddalore">Cuddalore</option>
+                  <option value="Dharmapuri">Dharmapuri</option>
+                  <option value="Dindigul">Dindigul</option>
+                  <option value="Erode">Erode</option>
+                  <option value="Kallakurichi">Kallakurichi</option>
+                  <option value="Kancheepuram">Kancheepuram</option>
+                  <option value="Karur">Karur</option>
+                  <option value="Krishnagiri">Krishnagiri</option>
+                  <option value="Madurai">Madurai</option>
+                  <option value="Mayiladuthurai">Mayiladuthurai</option>
+                  <option value="Nagapattinam">Nagapattinam</option>
+                  <option value="Namakkal">Namakkal</option>
+                  <option value="Nilgiris">Nilgiris</option>
+                  <option value="Perambalur">Perambalur</option>
+                  <option value="Pudukkottai">Pudukkottai</option>
+                  <option value="Ramanathapuram">Ramanathapuram</option>
+                  <option value="Ranipet">Ranipet</option>
+                  <option value="Salem">Salem</option>
+                  <option value="Sivagangai">Sivagangai</option>
+                  <option value="Tenkasi">Tenkasi</option>
+                  <option value="Thanjavur">Thanjavur</option>
+                  <option value="Theni">Theni</option>
+                  <option value="Thiruchirapalli">Thiruchirapalli</option>
+                  <option value="Thirunelveli">Thirunelveli</option>
+                  <option value="Thiruvallur">Thiruvallur</option>
+                  <option value="Thiruvarur">Thiruvarur</option>
+                  <option value="Thoothukudi">Thoothukudi</option>
+                  <option value="Tirupathur">Tirupathur</option>
+                  <option value="Tiruppur">Tiruppur</option>
+                  <option value="Tiruvannamalai">Tiruvannamalai</option>
+                  <option value="Vellore">Vellore</option>
+                  <option value="Villupuram">Villupuram</option>
+                  <option value="Virudhunagar">Virudhunagar</option>
+                </select>
+              </div>
+
+              <div class="my-5">
+                <label class="block mb-2 text-md font-bold text-gray-600"
+                  >Type of Warehouse</label
+                >
+                <select
+                  class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 focus:outline-none"
+                >
+                  <option value="default">Select Type</option>
+                  <option value="">Private</option>
+                  <option value="">Public</option>
+                  <option value="">Automated</option>
+                  <option value="">Smart</option>
+                  <option value="">Consolidation</option>
+                  <option value="">Cross-Docking</option>
+                </select>
+              </div>
+              <div class="my-5">
+                <label class="block mb-2 text-md font-bold text-gray-600"
+                  >Warehouse Category</label
+                >
+                <select
+                  class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 focus:outline-none"
+                >
+                  <option>Select Category</option>
+                </select>
+              </div>
+              <div class="my-5">
+                <label class="block mb-2 text-md font-bold text-gray-600"
+                  >Availability</label
+                >
+                <select
+                  class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 focus:outline-none"
+                >
+                  <option value="default">Select Availability</option>
+                  <option value="">Within 1 day</option>
+                  <option value="">Within 1 Week</option>
+                  <option value="">Within 2 Weeks</option>
+                  <option value="">Within 1 Month</option>
+                  <!-- <option value="">Within 1 Week</option> -->
+                </select>
+              </div>
+              <div class="my-5">
+                <label class="block mb-2 text-md font-bold text-gray-600"
+                  >Accessibility</label
+                >
+                <select
+                  class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 focus:outline-none"
+                >
+                  <option>Select Accessibility</option>
+                  <option value="">Ground Floor Access</option>
+                  <option value="">Loading Bay Access</option>
+                  <option value="">Multiple Floors with Elevator</option>
+                  <option value="">Transport Accessibility</option>
+                </select>
+              </div>
+            </div>
+            <div class="flex justify-end mt-6">
+              <button
+                id="next-step1"
+                class="bg-blue-600 text-white px-6 py-2 rounded-lg"
+              >
+                Next
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 2: Facilities and Items -->
+          <div id="step2" class="form-section hidden">
+            <h2 class="text-2xl font-semibold mb-4">
+              Step 2/3: Facilities and Items
+            </h2>
+
+            <!-- Facilities and Amenities -->
+            <div class="mb-4">
+              <label
+                for="facilitiesDropdown"
+                class="text-lg font-semibold mb-4 block text-gray-900"
+                >Facilities and Amenities</label
+              >
+              <div class="dropdown">
+                <button class="bg-gray-200 w-full px-4 py-2 rounded-lg">
+                  Select Facilities
+                </button>
+                <div class="dropdown-content">
+                  <label
+                    ><input
+                      type="checkbox"
+                      id="facilitiesSelectAll"
+                      onchange="selectAll('facilities', this)"
+                    />
+                    Select All</label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="facilitiesOption"
+                      value="Fire Extinguishers"
+                    />
+                    Fire Extinguishers</label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="facilitiesOption"
+                      value="Fire Alarms"
+                    />
+                    Fire Alarms</label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="facilitiesOption"
+                      value="CCTV"
+                    />
+                    CCTV</label
+                  >
+                  <!-- Add more options -->
+                </div>
+              </div>
+              <div
+                id="facilitiesList"
+                class="mt-6 mx-5 flex flex-wrap gap-2"
+              ></div>
+            </div>
+
+            <!-- Permitted Items -->
+            <div class="mb-4">
+              <label
+                for="permittedItemsDropdown"
+                class="text-lg font-semibold mb-4 block text-gray-900"
+                >Permitted Items</label
+              >
+              <div class="dropdown">
+                <button class="w-full bg-gray-200 px-4 py-2 rounded-lg">
+                  Select Permitted Items
+                </button>
+                <div class="dropdown-content">
+                  <label
+                    ><input
+                      type="checkbox"
+                      id="permittedItemsSelectAll"
+                      onchange="selectAll('permittedItems', this)"
+                    />
+                    Select All</label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="permittedItemsOption"
+                      value="Electronics"
+                    />
+                    Electronics</label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="permittedItemsOption"
+                      value="Furniture"
+                    />
+                    Furniture</label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="permittedItemsOption"
+                      value="Chemicals"
+                    />
+                    Chemicals</label
+                  >
+                </div>
+              </div>
+              <div
+                id="permittedItemsList"
+                class="mt-2 mx-5 flex flex-wrap gap-2"
+              ></div>
+            </div>
+
+            <!-- Prohibited Items -->
+            <div class="my-6">
+              <label
+                for="prohibitedItemsDropdown"
+                class="text-lg font-semibold mb-4 block text-gray-900"
+                >Prohibited Items</label
+              >
+              <div class="dropdown">
+                <button class="w-full bg-gray-200 px-4 py-2 rounded-lg">
+                  Select Prohibited Items
+                </button>
+                <div class="dropdown-content">
+                  <label
+                    ><input
+                      type="checkbox"
+                      id="prohibitedItemsSelectAll"
+                      onchange="selectAll('prohibitedItems', this)"
+                    />
+                    Select All</label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="prohibitedItemsOption"
+                      value="Explosives"
+                    />
+                    Explosives</label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="prohibitedItemsOption"
+                      value="Weapons"
+                    />
+                    Weapons</label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="prohibitedItemsOption"
+                      value="Flammable Liquids"
+                    />
+                    Flammable Liquids</label
+                  >
+                </div>
+              </div>
+              <div
+                id="prohibitedItemsList"
+                class="mt-2 mx-5 flex flex-wrap gap-2"
+              ></div>
+            </div>
+
+            <div class="flex justify-between mt-6">
+              <button
+                id="prev-step2"
+                class="bg-gray-600 text-white px-6 py-2 rounded-lg"
+              >
+                Previous
+              </button>
+              <button
+                id="next-step2"
+                class="bg-blue-600 text-white px-6 py-2 rounded-lg"
+              >
+                Next
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 3: Image Upload -->
+          <div id="step3" class="form-section hidden">
+            <h2 class="text-2xl font-semibold mb-4">Step 3/3: Upload Images</h2>
+            <div class="mb-4">
+              <label class="block text-md font-bold text-gray-700"
+                >Upload Images</label
+              >
+              <input
+                type="file"
+                id="image-upload"
+                multiple
+                accept="image/*"
+                class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300 focus:outline-none"
+              />
+            </div>
+            <div
+              id="image-preview"
+              class="mt-4 flex flex-wrap gap-4 items-center"
+            ></div>
+
+            <div class="flex justify-between mt-6">
+              <button
+                id="prev-step3"
+                class="bg-gray-600 text-white px-6 py-2 rounded-lg"
+              >
+                Back
+              </button>
+              <button
+                id="submit-btn"
+                class="bg-green-600 text-white px-6 py-2 rounded-lg"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- JavaScript for dropdown and item handling -->
     <script>
-      let selectedFacilities = [];
+      // Step Navigation
+      const step1 = document.getElementById("step1");
+      const step2 = document.getElementById("step2");
+      const step3 = document.getElementById("step3");
 
-      // Add selected items to the list
+      const step1Btn = document.getElementById("step1-btn");
+      const step2Btn = document.getElementById("step2-btn");
+      const step3Btn = document.getElementById("step3-btn");
+
+      // Move to step 2 and update button states
+      document
+        .getElementById("next-step1")
+        .addEventListener("click", function () {
+          step1.classList.add("hidden");
+          step2.classList.remove("hidden");
+
+          // Update step 1 button to show checkmark and change color
+          step1Btn.innerHTML = "&#10003;";
+          step1Btn.classList.remove("bg-blue-600");
+          step1Btn.classList.add("bg-green-600", "text-white");
+
+          // Update step 2 button
+          step2Btn.classList.remove("bg-gray-300");
+          step2Btn.classList.add("bg-blue-400", "text-white");
+        });
+
+      // Move to step 3 and update button states
+      document
+        .getElementById("next-step2")
+        .addEventListener("click", function () {
+          step2.classList.add("hidden");
+          step3.classList.remove("hidden");
+
+          // Update step 2 button to show checkmark and change color
+          step2Btn.innerHTML = "&#10003;";
+          step2Btn.classList.remove("bg-blue-400");
+          step2Btn.classList.add("bg-green-600", "text-white");
+
+          // Update step 3 button
+          step3Btn.classList.remove("bg-gray-300");
+          step3Btn.classList.add("bg-blue-400", "text-white");
+        });
+
+      // Move back to step 1 and reset button states
+      document
+        .getElementById("prev-step2")
+        .addEventListener("click", function () {
+          step2.classList.add("hidden");
+          step1.classList.remove("hidden");
+
+          // Reset step 1 button to its original state
+          step1Btn.innerHTML = "1";
+          step1Btn.classList.remove("bg-green-600", "text-white");
+          step1Btn.classList.add("bg-blue-600");
+
+          // Reset step 2 button
+          step2Btn.innerHTML = "2";
+          step2Btn.classList.remove("bg-green-600", "text-white");
+          step2Btn.classList.add("bg-gray-300");
+        });
+
+      // Move back to step 2 and reset button states
+      document
+        .getElementById("prev-step3")
+        .addEventListener("click", function () {
+          step3.classList.add("hidden");
+          step2.classList.remove("hidden");
+
+          // Reset step 2 button to its original state
+          step2Btn.innerHTML = "2";
+          step2Btn.classList.remove("bg-green-600", "text-white");
+          step2Btn.classList.add("bg-blue-400");
+
+          // Reset step 3 button
+          step3Btn.innerHTML = "3";
+          step3Btn.classList.remove("bg-blue-400", "text-white");
+          step3Btn.classList.add("bg-gray-300");
+        });
+
+      // Adding selected items
       function addItem(type, selectedItem) {
         const listContainer = document.getElementById(`${type}List`);
-
-        // Check if the item is already added
         if (
           Array.from(listContainer.children).some(
             (el) => el.firstChild.textContent.trim() === selectedItem
@@ -426,76 +545,42 @@
         ) {
           return;
         }
-
-        // Create a new item with a delete button in pill style
-        const item = document.createElement("div");
-        item.classList.add(
+        const card = document.createElement("div");
+        card.classList.add(
+          "bg-blue-600",
+          "text-white",
+          "p-2",
+          "rounded-lg",
           "flex",
           "items-center",
-          "bg-blue-500",
-          "text-white",
-          "px-3",
-          "py-1",
-          "rounded-full",
-          "mr-2",
-          "mb-2"
+          "justify-between",
+          "max-w-xs"
         );
-        item.innerHTML = `
-        <span class="mr-2">${selectedItem}</span>
-        <button class="text-white" onclick="removeItem(this)">×</button>
-      `;
-        listContainer.appendChild(item);
-      }
-
-      // Select or deselect all items in the dropdown
-      function selectAll(type, selectAllCheckbox) {
-        const options = document.querySelectorAll(`.${type}Option`);
-        options.forEach((option) => {
-          option.checked = selectAllCheckbox.checked;
-          if (selectAllCheckbox.checked) {
-            addItem(type, option.value);
-          } else {
-            clearItems(type);
-          }
+        const itemText = document.createElement("span");
+        itemText.textContent = selectedItem;
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "X";
+        deleteBtn.classList.add("text-red-500", "ml-2");
+        deleteBtn.addEventListener("click", function () {
+          listContainer.removeChild(card);
         });
+        card.appendChild(itemText);
+        card.appendChild(deleteBtn);
+        listContainer.appendChild(card);
       }
 
-      // Remove all items from the list
-      function clearItems(type) {
-        const listContainer = document.getElementById(`${type}List`);
-        listContainer.innerHTML = "";
-      }
-
-      // Remove a selected item from the list
-      function removeItem(element) {
-        element.parentElement.remove();
-      }
-
-      // Add selected items to the list when individual checkboxes are selected
       document.querySelectorAll(".facilitiesOption").forEach((option) => {
         option.addEventListener("change", function () {
           if (this.checked) {
             addItem("facilities", this.value);
-            selectedFacilities.push(this.value); // Add the selected facility
-          } else {
-            removeItemFromList("facilities", this.value);
-            selectedFacilities = selectedFacilities.filter(
-              (facility) => facility !== this.value
-            ); // Remove the unchecked facility
           }
         });
       });
-
-      function showFacilities() {
-        console.log("Selected facilities:", selectedFacilities); // Log the selected facilities
-      }
 
       document.querySelectorAll(".permittedItemsOption").forEach((option) => {
         option.addEventListener("change", function () {
           if (this.checked) {
             addItem("permittedItems", this.value);
-          } else {
-            removeItemFromList("permittedItems", this.value);
           }
         });
       });
@@ -504,64 +589,68 @@
         option.addEventListener("change", function () {
           if (this.checked) {
             addItem("prohibitedItems", this.value);
-          } else {
-            removeItemFromList("prohibitedItems", this.value);
           }
         });
       });
 
-      // Remove item by value from the list
-      function removeItemFromList(type, value) {
-        const listContainer = document.getElementById(`${type}List`);
-        Array.from(listContainer.children).forEach((el) => {
-          if (el.firstChild.textContent === value) {
-            el.remove();
+      // Handle image preview
+      document
+        .getElementById("image-upload")
+        .addEventListener("change", function () {
+          const imagePreviewContainer =
+            document.getElementById("image-preview");
+          imagePreviewContainer.innerHTML = "";
+          Array.from(this.files).forEach((file) => {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+              const imgCard = document.createElement("div");
+              imgCard.classList.add("relative");
+              const img = document.createElement("img");
+              img.src = e.target.result;
+              img.classList.add("object-cover", "w-full", "h-32", "rounded-lg");
+              const deleteBtn = document.createElement("button");
+              deleteBtn.textContent = "X";
+              deleteBtn.classList.add(
+                "absolute",
+                "top-0",
+                "right-0",
+                "bg-red-500",
+                "text-white",
+                "rounded-full",
+                "p-1"
+              );
+              deleteBtn.addEventListener("click", function () {
+                imagePreviewContainer.removeChild(imgCard);
+              });
+              imgCard.appendChild(img);
+              imgCard.appendChild(deleteBtn);
+              imagePreviewContainer.appendChild(imgCard);
+            };
+            reader.readAsDataURL(file);
+          });
+        });
+
+      // Select All functionality for checkboxes
+      function selectAll(type, checkbox) {
+        const options = document.querySelectorAll(`.${type}Option`);
+        options.forEach((option) => {
+          option.checked = checkbox.checked;
+          if (checkbox.checked) {
+            addItem(type, option.value);
+          } else {
+            document.getElementById(`${type}List`).innerHTML = "";
           }
         });
       }
 
-      let currentSection = 1;
-
-      function showNextSection() {
-        if (currentSection === 3) {
-          // Perform submission logic
-          submitForm();
-        } else {
-          // Navigate to the next section
-          document
-            .getElementById(`section${currentSection}`)
-            .classList.add("hidden");
-          currentSection++;
-          document
-            .getElementById(`section${currentSection}`)
-            .classList.remove("hidden");
-          updateButtons();
-        }
-      }
-
-      function showPreviousSection() {
-        document
-          .getElementById(`section${currentSection}`)
-          .classList.add("hidden");
-        currentSection--;
-        document
-          .getElementById(`section${currentSection}`)
-          .classList.remove("hidden");
-        updateButtons();
-      }
-
-      function submitForm() {
-        // Add your form submission logic here
-        window.location.href = "dashboard.html";
-      }
-
-      function updateButtons() {
-        document
-          .getElementById("prevBtn")
-          .classList.toggle("hidden", currentSection === 1);
-        const nextBtn = document.getElementById("nextBtn");
-        nextBtn.textContent = currentSection === 3 ? "Submit" : "Next";
-      }
+      document
+        .getElementById("submit-btn")
+        .addEventListener("click", function () {
+          const step1Btn = document.getElementById("step1-btn");
+          step1Btn.innerHTML = "&#10003;"; // Change the button content to a tick mark
+          step1Btn.classList.remove("bg-blue-600"); // Remove the blue background
+          step1Btn.classList.add("bg-green-600"); // Add a green background to show completion
+        });
     </script>
   </body>
 </html>
