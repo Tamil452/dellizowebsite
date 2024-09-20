@@ -281,24 +281,30 @@
             >
               <ul class="py-2 text-sm text-gray-700">
                 <li>
-                  <a href="#" class="block px-4 py-2 hover:bg-gray-100"
+                  <a
+                    href="/overview.html"
+                    class="block px-4 py-2 hover:bg-gray-100"
                     >Dashboard</a
                   >
                 </li>
                 <li>
-                  <a href="#" class="block px-4 py-2 hover:bg-gray-100"
-                    >Settings</a
+                  <a
+                    href="/inbox.html"
+                    class="block px-4 py-2 hover:bg-gray-100"
+                    >Inbox</a
                   >
                 </li>
                 <li>
-                  <a href="#" class="block px-4 py-2 hover:bg-gray-100"
+                  <a
+                    href="/dashboard.html"
+                    class="block px-4 py-2 hover:bg-gray-100"
                     >Profile</a
                   >
                 </li>
                 <li><hr class="border-t border-gray-200" /></li>
                 <li>
                   <a
-                    href="#"
+                    href="/index.html"
                     class="block px-4 py-2 text-red-600 hover:bg-gray-100"
                     >Logout</a
                   >
@@ -325,7 +331,9 @@
         </button>
         <ul class="flex flex-col items-center mt-16 space-y-4">
           <li>
-            <a href="#" class="text-gray-700 hover:text-blue-500">Home</a>
+            <a href="/index.html" class="text-gray-700 hover:text-blue-500"
+              >Home</a
+            >
           </li>
           <li>
             <a href="#" class="text-gray-700 hover:text-blue-500">Warehouses</a>
@@ -421,6 +429,24 @@
                   />
                   <label for="automated">Automated</label>
                 </div>
+                <div class="flex">
+                  <input
+                    type="checkbox"
+                    id="climate-controlled"
+                    name="warehouse-category"
+                    value="climate-controlled"
+                  />
+                  <label for="climate-controlled">Climate-Controlled</label>
+                </div>
+                <div class="flex">
+                  <input
+                    type="checkbox"
+                    id="bonded"
+                    name="warehouse-category"
+                    value="bonded"
+                  />
+                  <label for="bonded">Bonded</label>
+                </div>
               </div>
               <div class="px-2">
                 <div class="flex">
@@ -449,6 +475,24 @@
                     value="cross-docking"
                   />
                   <label for="cross-docking">Cross-Docking</label>
+                </div>
+                <div class="flex">
+                  <input
+                    type="checkbox"
+                    id="cooperative"
+                    name="warehouse-category"
+                    value="cooperative"
+                  />
+                  <label for="cooperative">Cooperative</label>
+                </div>
+                <div class="flex">
+                  <input
+                    type="checkbox"
+                    id="government"
+                    name="warehouse-category"
+                    value="government"
+                  />
+                  <label for="government">Government</label>
                 </div>
               </div>
             </div>
@@ -962,10 +1006,10 @@
 
           <!-- Slideshow Container -->
           <div class="relative h-60 sm:w-72 w-full p-2">
-            <!-- Heart Icon -->
             <div
               class="absolute top-2 right-2 bg-white p-1 rounded-full shadow-md"
             >
+              <!-- Heart Icon -->
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-5 w-5 text-red-500"
@@ -978,9 +1022,9 @@
               </svg>
             </div>
             <img
-              id="slideshow-image"
+              id="slideshow-image-1"
               class="h-full w-full object-cover rounded-lg"
-              src="images/map-4348394_1280.png"
+              src="images/img1.jpeg"
               alt="Warehouse Image"
             />
           </div>
@@ -1095,10 +1139,10 @@
 
           <!-- Slideshow Container -->
           <div class="relative h-60 sm:w-72 w-full p-2">
-            <!-- Heart Icon -->
             <div
               class="absolute top-2 right-2 bg-white p-1 rounded-full shadow-md"
             >
+              <!-- Heart Icon -->
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-5 w-5 text-red-500"
@@ -1111,9 +1155,9 @@
               </svg>
             </div>
             <img
-              id="slideshow-image"
+              id="slideshow-image-2"
               class="h-full w-full object-cover rounded-lg"
-              src="images/map-4348394_1280.png"
+              src="images/img4.jpeg"
               alt="Warehouse Image"
             />
           </div>
@@ -1228,10 +1272,10 @@
 
           <!-- Slideshow Container -->
           <div class="relative h-60 sm:w-72 w-full p-2">
-            <!-- Heart Icon -->
             <div
               class="absolute top-2 right-2 bg-white p-1 rounded-full shadow-md"
             >
+              <!-- Heart Icon -->
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-5 w-5 text-red-500"
@@ -1244,9 +1288,9 @@
               </svg>
             </div>
             <img
-              id="slideshow-image"
+              id="slideshow-image-3"
               class="h-full w-full object-cover rounded-lg"
-              src="images/map-4348394_1280.png"
+              src="images/img2.jpeg"
               alt="Warehouse Image"
             />
           </div>
@@ -1349,23 +1393,45 @@
 
         <!-- Slideshow Script -->
         <script>
-          const images = [
-            "images/map-4348394_1280.png",
-            "images/240_F_836637484_YTUiMH83mxoV6cl2N4gORa2KSkwXHd5G.jpg",
-            "images/map-4348394_1280.png",
+          const slideshows = [
+            {
+              images: [
+                "images/img1.jpeg",
+                "images/img2.jpeg",
+                "images/img3.jpeg",
+              ],
+              elementId: "slideshow-image-1",
+            },
+            {
+              images: [
+                "images/img4.jpeg",
+                "images/img5.jpeg",
+                "images/img6.jpeg",
+              ],
+              elementId: "slideshow-image-2",
+            },
+            {
+              images: [
+                "images/img1.jpeg",
+                "images/img2.jpeg",
+                "images/img3.jpeg",
+              ],
+              elementId: "slideshow-image-3",
+            },
           ];
 
-          // Function to change the image
-          let currentImageIndex = 0;
-          const imageElement = document.getElementById("slideshow-image");
+          slideshows.forEach((slideshow, index) => {
+            let currentImageIndex = 0;
+            const imageElement = document.getElementById(slideshow.elementId);
 
-          function changeImage() {
-            currentImageIndex = (currentImageIndex + 1) % images.length;
-            imageElement.src = images[currentImageIndex];
-          }
+            function changeImage() {
+              currentImageIndex =
+                (currentImageIndex + 1) % slideshow.images.length;
+              imageElement.src = slideshow.images[currentImageIndex];
+            }
 
-          // Change image every 3 seconds
-          setInterval(changeImage, 1000);
+            setInterval(changeImage, 3000); // Change image every 3 seconds
+          });
         </script>
       </main>
     </div>

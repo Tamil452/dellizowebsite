@@ -91,19 +91,21 @@
               <ul class="py-2 text-sm text-gray-700">
                 <li>
                   <a
-                    href="overview.html"
+                    href="/overview.html"
                     class="block px-4 py-2 hover:bg-gray-100"
                     >Dashboard</a
                   >
                 </li>
                 <li>
-                  <a href="inbox.html" class="block px-4 py-2 hover:bg-gray-100"
-                    >My Inbox</a
+                  <a
+                    href="/inbox.html"
+                    class="block px-4 py-2 hover:bg-gray-100"
+                    >Inbox</a
                   >
                 </li>
                 <li>
                   <a
-                    href="dashboard.html"
+                    href="/dashboard.html"
                     class="block px-4 py-2 hover:bg-gray-100"
                     >Profile</a
                   >
@@ -111,7 +113,7 @@
                 <li><hr class="border-t border-gray-200" /></li>
                 <li>
                   <a
-                    href="login.html"
+                    href="/index.html"
                     class="block px-4 py-2 text-red-600 hover:bg-gray-100"
                     >Logout</a
                   >
@@ -452,13 +454,6 @@
           },
         },
       });
-      // Toggle dropdown visibility
-      document
-        .getElementById("profile-menu-button")
-        .addEventListener("click", function () {
-          const dropdown = document.getElementById("profile-dropdown");
-          dropdown.classList.toggle("hidden");
-        });
 
       // Toggle the mobile menu (Hamburger menu functionality)
       const hamburgerBtn = document.getElementById("hamburger-btn");
