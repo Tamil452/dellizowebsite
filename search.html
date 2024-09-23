@@ -26,6 +26,60 @@
 
     <!-- Include any additional styles here -->
     <style>
+
+        /* Style for loading overlay */
+        .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        display: none;
+        font-family: 'Arial', sans-serif;
+      }
+      
+      /* Company name animation */
+      .loading-text {
+        font-size: 3rem;
+        color: #4B5563; /* Slate gray color */
+        letter-spacing: 0.2rem;
+        opacity: 0;
+        animation: fadeInOut 2s infinite;
+        text-transform: uppercase;
+      }
+
+      /* Keyframes for the modern loading effect */
+      @keyframes fadeInOut {
+        0%, 100% { opacity: 0; }
+        50% { opacity: 1; }
+      }
+
+      /* Styling the individual letters for a wave effect */
+      .loading-text span {
+        display: inline-block;
+        animation: bounce 1.5s ease-in-out infinite;
+      }
+
+      /* Delay each letter's bounce animation for a wave effect */
+      .loading-text span:nth-child(1) { animation-delay: 0s; }
+      .loading-text span:nth-child(2) { animation-delay: 0.1s; }
+      .loading-text span:nth-child(3) { animation-delay: 0.2s; }
+      .loading-text span:nth-child(4) { animation-delay: 0.3s; }
+      .loading-text span:nth-child(5) { animation-delay: 0.4s; }
+      .loading-text span:nth-child(6) { animation-delay: 0.5s; }
+      .loading-text span:nth-child(7) { animation-delay: 0.6s; }
+
+      /* Bounce keyframes for each letter */
+      @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+      }
+
       body {
         font-family: Arial, sans-serif;
         margin: 0;
@@ -216,6 +270,12 @@
 
   <body class="bg-gray-100 font-sans">
     <!-- Header -->
+    <div class="loading-overlay">
+      <div class="loading-text">
+        <span>D</span><span>e</span><span>l</span><span>l</span><span>i</span><span>z</span><span>o</span>
+      </div>
+    </div>
+
     <nav class="bg-blue-100 border-gray-200">
       <div
         class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
@@ -234,7 +294,7 @@
           </button>
 
           <!-- Left Logo Section -->
-          <a href="#" class="flex items-center">
+          <a href="/search.html" class="flex items-center">
             <img
               src="https://flowbite.com/docs/images/logo.svg"
               class="h-8"
@@ -349,11 +409,15 @@
     </nav>
 
     <!-- Main Content -->
-    <div class="container mx-auto flex py-6">
+    <div
+      class="container h-screen overflow-auto mx-auto flex py-6"
+      style="-ms-overflow-style: none; scrollbar-width: none"
+    >
       <!-- Sidebar Filter -->
       <aside
         id="sidebar"
         class="w-full xl:w-[25%] xl:mx-10 bg-white p-4 rounded-lg shadow-md fixed top-0 left-0 h-screen xl:h-auto overflow-y-auto transform -translate-x-full xl:translate-x-0 xl:relative z-50 transition-transform duration-300 ease-in-out"
+        style="-ms-overflow-style: none; scrollbar-width: none"
       >
         <!-- Sidebar Header with Back Button -->
         <div class="xl:hidden flex items-center mb-4">
@@ -979,7 +1043,8 @@
 
       <!-- Main Content Area -->
       <main
-        class="w-full xl:w-[70%] mx-5 xl:m-0 bg-white p-4 rounded-lg shadow-md"
+        class="w-full xl:w-[70%] h-[100%] overflow-auto mx-5 xl:m-0 bg-white p-4 rounded-lg shadow-md"
+        style="-ms-overflow-style: none; scrollbar-width: none"
       >
         <div class="flex">
           <!-- Hamburger Button for filter -->
@@ -1117,7 +1182,7 @@
             <div class="mt-2">
               <button
                 class="bg-blue-500 text-white px-4 py-2 rounded-lg w-full sm:w-auto"
-                onclick="window.location.href='role_selection.html'"
+                onclick="window.location.href='WarehouseDetails.html'"
               >
                 View Deal
               </button>
@@ -1250,7 +1315,7 @@
             <div class="mt-2">
               <button
                 class="bg-blue-500 text-white px-4 py-2 rounded-lg w-full sm:w-auto"
-                onclick="window.location.href='role_selection.html'"
+                onclick="window.location.href='WarehouseDetails.html'"
               >
                 View Deal
               </button>
@@ -1383,7 +1448,271 @@
             <div class="mt-2">
               <button
                 class="bg-blue-500 text-white px-4 py-2 rounded-lg w-full sm:w-auto"
-                onclick="window.location.href='role_selection.html'"
+                onclick="window.location.href='WarehouseDetails.html'"
+              >
+                View Deal
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="bg-white rounded-lg shadow-md overflow-hidden mb-4 mx-auto max-w-4xl flex flex-col sm:flex-row relative h-auto"
+        >
+          <!-- Share Button -->
+          <div class="absolute top-2 right-2">
+            <button
+              class="bg-gray-200 p-2 rounded-full text-gray-600 hover:bg-gray-300"
+            >
+              <i class="fas fa-share"></i>
+            </button>
+          </div>
+
+          <!-- Slideshow Container -->
+          <div class="relative h-60 sm:w-72 w-full p-2">
+            <div
+              class="absolute top-2 right-2 bg-white p-1 rounded-full shadow-md"
+            >
+              <!-- Heart Icon -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-red-500"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                />
+              </svg>
+            </div>
+            <img
+              id="slideshow-image-3"
+              class="h-full w-full object-cover rounded-lg"
+              src="images/img2.jpeg"
+              alt="Warehouse Image"
+            />
+          </div>
+
+          <!-- Warehouse Details -->
+          <div class="p-4 w-full sm:w-1/2 flex flex-col justify-between">
+            <!-- Warehouse Title and Price -->
+            <div class="flex justify-between items-center">
+              <h3 class="text-lg font-bold">Modern Warehouse in Chennai</h3>
+              <div class="text-blue-600 font-bold">₹20,000/month</div>
+            </div>
+
+            <!-- Availability and Size -->
+            <p class="text-sm text-gray-600 mt-2 flex items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4 mr-2"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  d="M6 2a1 1 0 00-1 1v1H3a1 1 0 00-1 1v1h16V5a1 1 0 00-1-1h-2V3a1 1 0 00-1-1H6zM3 8v8a1 1 0 001 1h12a1 1 0 001-1V8H3z"
+                />
+              </svg>
+              Available from: 01/09/2024
+            </p>
+            <p class="text-sm text-gray-600 mt-1 flex items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4 mr-2"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  d="M10 2a8 8 0 00-8 8v6a2 2 0 002 2h12a2 2 0 002-2v-6a8 8 0 00-8-8zm0 14a1 1 0 110-2 1 1 0 010 2zm1-3a1 1 0 01-2 0v-1a1 1 0 012 0v1zm0-4a1 1 0 01-2 0V8a1 1 0 012 0v1z"
+                />
+              </svg>
+              5000 sq. ft.
+            </p>
+
+            <!-- Floor Information -->
+            <p class="text-sm text-gray-600 mt-1 flex items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4 mr-2"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  d="M10 2a8 8 0 00-8 8v6a2 2 0 002 2h12a2 2 0 002-2v-6a8 8 0 00-8-8zm0 14a1 1 0 110-2 1 1 0 010 2zm1-3a1 1 0 01-2 0v-1a1 1 0 012 0v1zm0-4a1 1 0 01-2 0V8a1 1 0 012 0v1z"
+                />
+              </svg>
+              Ground Floor
+            </p>
+
+            <!-- Facilities -->
+            <p class="text-sm text-gray-600 mt-1 flex items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4 mr-2"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  d="M10 2a8 8 0 00-8 8v6a2 2 0 002 2h12a2 2 0 002-2v-6a8 8 0 00-8-8zm0 14a1 1 0 110-2 1 1 0 010 2zm1-3a1 1 0 01-2 0v-1a1 1 0 012 0v1zm0-4a1 1 0 01-2 0V8a1 1 0 012 0v1z"
+                />
+              </svg>
+              24/7 Security, CCTV, Fire Safety
+            </p>
+
+            <!-- Rating -->
+            <div class="mt-2 flex items-center">
+              <span class="text-yellow-500 flex items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-4 w-4 mr-2"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.18 3.628a1 1 0 00.95.69h3.8c.969 0 1.372 1.24.588 1.81l-3.073 2.23a1 1 0 00-.364 1.118l1.18 3.628c.3.921-.755 1.688-1.54 1.118l-3.073-2.23a1 1 0 00-1.175 0l-3.073 2.23c-.784.57-1.839-.197-1.54-1.118l1.18-3.628a1 1 0 00-.364-1.118L2.71 9.055c-.784-.57-.381-1.81.588-1.81h3.8a1 1 0 00.95-.69l1.18-3.628z"
+                  />
+                </svg>
+                4.9
+              </span>
+              <span class="ml-2 text-gray-600">(45 Reviews)</span>
+            </div>
+
+            <!-- View Deal Button -->
+            <div class="mt-2">
+              <button
+                class="bg-blue-500 text-white px-4 py-2 rounded-lg w-full sm:w-auto"
+                onclick="window.location.href='WarehouseDetails.html'"
+              >
+                View Deal
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="bg-white rounded-lg shadow-md overflow-hidden mb-4 mx-auto max-w-4xl flex flex-col sm:flex-row relative h-auto"
+        >
+          <!-- Share Button -->
+          <div class="absolute top-2 right-2">
+            <button
+              class="bg-gray-200 p-2 rounded-full text-gray-600 hover:bg-gray-300"
+            >
+              <i class="fas fa-share"></i>
+            </button>
+          </div>
+
+          <!-- Slideshow Container -->
+          <div class="relative h-60 sm:w-72 w-full p-2">
+            <div
+              class="absolute top-2 right-2 bg-white p-1 rounded-full shadow-md"
+            >
+              <!-- Heart Icon -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-red-500"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                />
+              </svg>
+            </div>
+            <img
+              id="slideshow-image-3"
+              class="h-full w-full object-cover rounded-lg"
+              src="images/img2.jpeg"
+              alt="Warehouse Image"
+            />
+          </div>
+
+          <!-- Warehouse Details -->
+          <div class="p-4 w-full sm:w-1/2 flex flex-col justify-between">
+            <!-- Warehouse Title and Price -->
+            <div class="flex justify-between items-center">
+              <h3 class="text-lg font-bold">Modern Warehouse in Chennai</h3>
+              <div class="text-blue-600 font-bold">₹20,000/month</div>
+            </div>
+
+            <!-- Availability and Size -->
+            <p class="text-sm text-gray-600 mt-2 flex items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4 mr-2"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  d="M6 2a1 1 0 00-1 1v1H3a1 1 0 00-1 1v1h16V5a1 1 0 00-1-1h-2V3a1 1 0 00-1-1H6zM3 8v8a1 1 0 001 1h12a1 1 0 001-1V8H3z"
+                />
+              </svg>
+              Available from: 01/09/2024
+            </p>
+            <p class="text-sm text-gray-600 mt-1 flex items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4 mr-2"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  d="M10 2a8 8 0 00-8 8v6a2 2 0 002 2h12a2 2 0 002-2v-6a8 8 0 00-8-8zm0 14a1 1 0 110-2 1 1 0 010 2zm1-3a1 1 0 01-2 0v-1a1 1 0 012 0v1zm0-4a1 1 0 01-2 0V8a1 1 0 012 0v1z"
+                />
+              </svg>
+              5000 sq. ft.
+            </p>
+
+            <!-- Floor Information -->
+            <p class="text-sm text-gray-600 mt-1 flex items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4 mr-2"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  d="M10 2a8 8 0 00-8 8v6a2 2 0 002 2h12a2 2 0 002-2v-6a8 8 0 00-8-8zm0 14a1 1 0 110-2 1 1 0 010 2zm1-3a1 1 0 01-2 0v-1a1 1 0 012 0v1zm0-4a1 1 0 01-2 0V8a1 1 0 012 0v1z"
+                />
+              </svg>
+              Ground Floor
+            </p>
+
+            <!-- Facilities -->
+            <p class="text-sm text-gray-600 mt-1 flex items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4 mr-2"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  d="M10 2a8 8 0 00-8 8v6a2 2 0 002 2h12a2 2 0 002-2v-6a8 8 0 00-8-8zm0 14a1 1 0 110-2 1 1 0 010 2zm1-3a1 1 0 01-2 0v-1a1 1 0 012 0v1zm0-4a1 1 0 01-2 0V8a1 1 0 012 0v1z"
+                />
+              </svg>
+              24/7 Security, CCTV, Fire Safety
+            </p>
+
+            <!-- Rating -->
+            <div class="mt-2 flex items-center">
+              <span class="text-yellow-500 flex items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-4 w-4 mr-2"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.18 3.628a1 1 0 00.95.69h3.8c.969 0 1.372 1.24.588 1.81l-3.073 2.23a1 1 0 00-.364 1.118l1.18 3.628c.3.921-.755 1.688-1.54 1.118l-3.073-2.23a1 1 0 00-1.175 0l-3.073 2.23c-.784.57-1.839-.197-1.54-1.118l1.18-3.628a1 1 0 00-.364-1.118L2.71 9.055c-.784-.57-.381-1.81.588-1.81h3.8a1 1 0 00.95-.69l1.18-3.628z"
+                  />
+                </svg>
+                4.9
+              </span>
+              <span class="ml-2 text-gray-600">(45 Reviews)</span>
+            </div>
+
+            <!-- View Deal Button -->
+            <div class="mt-2">
+              <button
+                class="bg-blue-500 text-white px-4 py-2 rounded-lg w-full sm:w-auto"
+                onclick="window.location.href='WarehouseDetails.html'"
               >
                 View Deal
               </button>
@@ -1437,7 +1766,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-blue-100 text-black py-6 mt-10">
+    <footer class="bg-blue-100 text-black py-6">
       <div class="container mx-auto px-6">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           <!-- Column 1: Dellizo Warehouse Info -->
@@ -1585,6 +1914,27 @@
         sidebar.classList.add("-translate-x-full"); // Hide sidebar when clicking outside
         overlay.classList.add("hidden"); // Hide overlay when sidebar is hidden
       });
+
+      
+  // Function to show loading animation and redirect
+      function redirectToRoleSelection() {
+        // Show loading overlay
+        document.querySelector('.loading-overlay').style.display = 'flex';
+
+        // Simulate a short delay (e.g., 2 seconds) before redirecting
+        setTimeout(function() {
+          window.location.href = 'role_selection.html'; // Replace with the desired page
+        }, 3000); // 3 seconds delay to show the animation
+      }
+
+      // Add event listener to the entire page for click
+      document.addEventListener('DOMContentLoaded', function () {
+        document.body.addEventListener('click', function() {
+          redirectToRoleSelection();
+        });
+      });
+
+
     </script>
   </body>
 </html>

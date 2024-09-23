@@ -1,98 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Verify OTP</title>
-    <!-- Tailwind CSS CDN -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/tailwindcss@^2.0/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
-  </head>
-  <body class="bg-gray-50 mx-5 flex items-center justify-center min-h-screen">
-    <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full text-center">
-      <!-- Icon -->
-      <div class="flex justify-center mb-6">
-        <img
-          src="https://img.freepik.com/premium-vector/vector-illustration-about-data-protection-concept-with-active-lock-security_675567-5772.jpg?w=740"
-          alt="OTP Icon"
-          class="w-16 h-16"
-        />
-      </div>
-
-      <!-- Heading -->
-      <h2 class="text-xl font-semibold text-gray-700 mb-2">Verify Account</h2>
-
-      <!-- Description -->
-      <p class="text-gray-600 mb-4">
-        Mobile verification has successfully been done. We have sent the OTP to
-        8882356364.
-      </p>
-
-      <!-- OTP Input -->
-      <form method="post" class="space-y-4">
-        {% csrf_token %}
-        <div class="flex justify-center space-x-2">
-          <input
-            type="text"
-            id="otp1"
-            name="otp1"
-            maxlength="1"
-            class="w-10 h-10 text-center border-b-2 border-gray-300 focus:outline-none focus:border-red-500"
-            required
-          />
-          <input
-            type="text"
-            id="otp2"
-            name="otp2"
-            maxlength="1"
-            class="w-10 h-10 text-center border-b-2 border-gray-300 focus:outline-none focus:border-red-500"
-            required
-          />
-          <input
-            type="text"
-            id="otp3"
-            name="otp3"
-            maxlength="1"
-            class="w-10 h-10 text-center border-b-2 border-gray-300 focus:outline-none focus:border-red-500"
-            required
-          />
-          <input
-            type="text"
-            id="otp4"
-            name="otp4"
-            maxlength="1"
-            class="w-10 h-10 text-center border-b-2 border-gray-300 focus:outline-none focus:border-red-500"
-            required
-          />
-          <input
-            type="text"
-            id="otp5"
-            name="otp5"
-            maxlength="1"
-            class="w-10 h-10 text-center border-b-2 border-gray-300 focus:outline-none focus:border-red-500"
-            required
-          />
-          <input
-            type="text"
-            id="otp6"
-            name="otp6"
-            maxlength="1"
-            class="w-10 h-10 text-center border-b-2 border-gray-300 focus:outline-none focus:border-red-500"
-            required
-          />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            overflow: hidden; /* Prevent scrolling */
+        }
+        .animate-slideIn {
+            animation: slideIn 0.8s ease forwards;
+        }
+        @keyframes slideIn {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 mx-5 flex items-center justify-center min-h-screen">
+    <!-- OTP Input Section -->
+    <div id="otp-section" class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full text-center">
+        <div class="flex justify-center mb-6">
+            <img
+                src="https://img.freepik.com/premium-vector/vector-illustration-about-data-protection-concept-with-active-lock-security_675567-5772.jpg?w=740"
+                alt="OTP Icon"
+                class="w-16 h-16"
+            />
         </div>
 
-        <!-- Submit Button -->
-        <a
-          href="/create_account.html"
-          type="submit"
-          class="w-full bg-purple-600 text-white rounded-lg py-2 font-semibold shadow-sm hover:bg-purple-700 transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-purple-500"
-        >
-          Verify
-        </a>
-      </form>
+        <h2 class="text-xl font-semibold text-gray-700 mb-2">Verify Account</h2>
+        <p class="text-gray-600 mb-4">We have sent the OTP to 8882356364. Please enter it below.</p>
+
+        <div class="flex justify-center space-x-2 mb-4">
+            <input type="text" maxlength="1" class="w-10 h-10 text-center border-b-2 border-gray-300 focus:outline-none focus:border-purple-500" required id="otp1" oninput="moveToNext(this, 'otp2')" />
+            <input type="text" maxlength="1" class="w-10 h-10 text-center border-b-2 border-gray-300 focus:outline-none focus:border-purple-500" required id="otp2" oninput="moveToNext(this, 'otp3')" />
+            <input type="text" maxlength="1" class="w-10 h-10 text-center border-b-2 border-gray-300 focus:outline-none focus:border-purple-500" required id="otp3" oninput="moveToNext(this, 'otp4')" />
+            <input type="text" maxlength="1" class="w-10 h-10 text-center border-b-2 border-gray-300 focus:outline-none focus:border-purple-500" required id="otp4" oninput="moveToNext(this, 'otp5')" />
+            <input type="text" maxlength="1" class="w-10 h-10 text-center border-b-2 border-gray-300 focus:outline-none focus:border-purple-500" required id="otp5" oninput="moveToNext(this, 'otp6')" />
+            <input type="text" maxlength="1" class="w-10 h-10 text-center border-b-2 border-gray-300 focus:outline-none focus:border-purple-500" required id="otp6" />
+        </div>
+
+        <div class="text-red-500 mb-4 hidden" id="error-message">Invalid OTP, redirecting...</div>
+
+        <button class="w-full bg-purple-600 text-white rounded-lg py-2 font-semibold shadow-sm hover:bg-purple-700 transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-purple-500" onclick="verifyOtp()">Verify</button>
     </div>
-  </body>
+
+    <!-- OTP Verification Successful Section -->
+    <div id="success-section" class="bg-white p-8 rounded-lg shadow-lg text-center hidden animate-slideIn">
+        <h1 class="text-3xl font-bold text-gray-800 mb-4">OTP Successfully Verified!</h1>
+        <p class="text-gray-600 mb-6">Thank you for verifying your OTP. You can now proceed to your dashboard.</p>
+        <div class="flex justify-center mb-6">
+            <iframe src="https://lottie.host/embed/18f58603-3f0d-433c-8bbc-2ed8d95888b3/rOM3fITbWx.json" style="width: 150px; height: 150px; border: none;" allowfullscreen></iframe>
+        </div>
+        <button class="bg-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 transition duration-200 close-button" onclick="goToDashboard()">Go to Main Menu</button>
+    </div>
+
+    <script>
+        // Expected OTP for validation (simulated)
+        const correctOtp = "123456"; // Replace with your OTP logic
+
+        // Function to move to the next input field automatically
+        function moveToNext(current, nextFieldId) {
+            if (current.value.length === 1) {
+                document.getElementById(nextFieldId).focus();
+            }
+        }
+
+        // Function to verify OTP and show the success section
+        function verifyOtp() {
+            // Get the entered OTP
+            const enteredOtp = document.getElementById('otp1').value +
+                               document.getElementById('otp2').value +
+                               document.getElementById('otp3').value +
+                               document.getElementById('otp4').value +
+                               document.getElementById('otp5').value +
+                               document.getElementById('otp6').value;
+
+            // Check if the entered OTP matches the correct OTP
+            if (enteredOtp === correctOtp) {
+                document.getElementById('otp-section').classList.add('hidden');
+                document.getElementById('success-section').classList.remove('hidden');
+            } else {
+                // Show error message and redirect to retry page after a short delay
+                document.getElementById('error-message').classList.remove('hidden');
+                setTimeout(() => {
+                    window.location.href = "retryotp.html"; // Redirect to retry page
+                }, 2000); // Redirect after 2 seconds
+            }
+        }
+
+        // Function to handle "Enter" key for OTP submission
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Enter") {
+                verifyOtp(); // Trigger OTP verification on Enter key press
+            }
+        });
+
+        // Redirect to the dashboard or home page
+        function goToDashboard() {
+            window.location.href = "dashboard.html"; // Update with actual dashboard URL
+        }
+    </script>
+</body>
 </html>

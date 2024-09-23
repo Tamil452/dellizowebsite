@@ -9,16 +9,79 @@
       href="https://cdn.jsdelivr.net/npm/tailwindcss@^2.0/dist/tailwind.min.css"
       rel="stylesheet"
     />
-    <!-- Google Fonts CDN -->
-   
+    <style>
+      /* Additional styles for validation messages */
+      .valid {
+        color: green;
+      }
+      .invalid {
+        color: red;
+      }
     </style>
+    <script>
+      function validatePassword() {
+        const password = document.getElementById("password").value;
+        const message = document.getElementById("password-message");
+        let errorMessage = "";
+
+        const lengthPattern = /^.{8,}$/; // At least 8 characters
+        const upperCasePattern = /[A-Z]/; // At least one uppercase letter
+        const specialCharPattern = /[!@#$%^&*(),.?":{}|<>]/; // At least one special character
+        const numberPattern = /[0-9]/; // At least one numeric character
+
+        if (!lengthPattern.test(password)) {
+          errorMessage += "<p class='invalid'>At least 8 characters</p>";
+        } else {
+          errorMessage += "<p class='valid'>At least 8 characters</p>";
+        }
+
+        if (!upperCasePattern.test(password)) {
+          errorMessage += "<p class='invalid'>At least one uppercase letter</p>";
+        } else {
+          errorMessage += "<p class='valid'>At least one uppercase letter</p>";
+        }
+
+        if (!specialCharPattern.test(password)) {
+          errorMessage += "<p class='invalid'>At least one special character</p>";
+        } else {
+          errorMessage += "<p class='valid'>At least one special character</p>";
+        }
+
+        if (!numberPattern.test(password)) {
+          errorMessage += "<p class='invalid'>At least one numeric digit</p>";
+        } else {
+          errorMessage += "<p class='valid'>At least one numeric digit</p>";
+        }
+
+        message.innerHTML = errorMessage;
+      }
+
+      function validateForm() {
+        const password = document.getElementById("password").value;
+
+        const lengthPattern = /^.{8,}$/;
+        const upperCasePattern = /[A-Z]/;
+        const specialCharPattern = /[!@#$%^&*(),.?":{}|<>]/;
+        const numberPattern = /[0-9]/;
+
+        if (
+          lengthPattern.test(password) &&
+          upperCasePattern.test(password) &&
+          specialCharPattern.test(password) &&
+          numberPattern.test(password)
+        ) {
+          window.location.href = "/search.html";
+          return true;
+        }
+
+        return false; // Prevent form submission if the password doesn't match all criteria
+      }
+    </script>
   </head>
   <body class="mx-5 flex items-center justify-center min-h-screen bg-gray-100">
     <div class="bg-white flex max-w-6xl rounded-lg shadow-lg overflow-hidden">
       <!-- Left Side: Illustration -->
-      <div
-        class="hidden lg:flex lg:w-1/2 bg-purple-100 items-center justify-center p-5"
-      >
+      <div class="hidden lg:flex lg:w-1/2 bg-purple-100 items-center justify-center p-5">
         <img
           src="https://img.freepik.com/free-vector/cyber-data-security-online-concept-illustration-internet-security-information-privacy-protection_1150-37330.jpg?size=626&ext=jpg&ga=GA1.1.1230251694.1687234019&semt=ais_hybrid"
           alt="Login Illustration"
@@ -28,16 +91,13 @@
 
       <!-- Right Side: Login Form -->
       <div class="w-full lg:w-1/2 p-8 lg:p-12">
-        <h2 class="text-3xl text-purple-700 text-center mb-4">Welcome back</h2>
+        <h2 class="text-3xl text-purple-700 text-center mb-4">Welcome Back</h2>
         <p class="text-center text-gray-600 mb-8">
-          Log in with your data that you entered during your registration
+          Log in with your data that you entered during your registration.
         </p>
-        <form method="post" class="space-y-6">
-          <!-- {% csrf_token %} -->
+        <form onsubmit="return validateForm()" class="space-y-6">
           <div>
-            <label for="email" class="block text-md text-gray-800"
-              >Enter your email address</label
-            >
+            <label for="username" class="block text-md text-gray-800">Enter your email address</label>
             <input
               type="email"
               id="username"
@@ -47,56 +107,30 @@
             />
           </div>
           <div>
-            <label for="password" class="block text-md text-gray-800"
-              >Enter your password</label
-            >
+            <label for="password" class="block text-md text-gray-800">Enter your password</label>
             <input
               type="password"
               id="password"
               name="password"
               required
+              oninput="validatePassword()"
               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-600"
-              placeholder="at least 8 characters"
+              placeholder="At least 8 characters"
             />
+            <div id="password-message" class="mt-2 text-sm"></div>
           </div>
           <div class="flex justify-between items-center">
-            <a
-              href="/password_reset.html"
-              class="text-sm text-purple-600 hover:underline"
-              >Forgot password?</a
-            >
+            <a href="/password_reset.html" class="text-sm text-purple-600 hover:underline">Forgot password?</a>
           </div>
-          <a
-            href="/search.html"
-            type="submit"
-            class="w-full text-center bg-purple-600 text-white rounded-lg py-2 px-4 shadow-sm hover:bg-purple-700 transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-purple-600"
-          >
-            Log in
-        </a>
+          <button type="button" class="w-full bg-purple-600 text-white rounded-lg py-2 px-4 shadow-sm hover:bg-purple-700 transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-purple-600"
+          onclick="window.location.href='/search.html'">Log in
+          </button>
         </form>
         <p class="mt-8 text-center text-sm text-gray-600">
           Don't have an account?
-          <a
-            href="/register.html"
-            class="text-purple-600 hover:underline"
-            >Register</a
-          >
+          <a href="/register.html" class="text-purple-600 hover:underline">Register</a>
         </p>
       </div>
     </div>
-
-    <!-- {% if messages %}
-<ul class="fixed bottom-4 right-4 space-y-2">
-  {% for message in messages %}
-  <li
-    class="{{ message.tags }} bg-gray-800 text-white px-2 py-1 rounded-lg shadow-lg text-sm"
-  >
-    {{ message }}
-  </li>
-  {% endfor %}
-</ul>
-{% endif %} -->
-
   </body>
 </html>
-
